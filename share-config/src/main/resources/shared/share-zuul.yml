@@ -1,0 +1,15 @@
+zuul:
+  ignoredServices: '*'
+  semaphore:
+    maxSemaphores: 1000
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
+
+  routes:
+    share-sdi:
+      path: /sdi/**
+      serviceId: share-sdi
+
+server:
+  port: 8080

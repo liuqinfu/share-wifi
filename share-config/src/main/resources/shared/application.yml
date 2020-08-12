@@ -1,0 +1,18 @@
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+eureka:
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
+  client:
+    healthcheck:
+      enabled: true
+    registry-fetch-interval-seconds: 60
+    serviceUrl:
+      defaultZone: http://localhost:8083/eureka/
