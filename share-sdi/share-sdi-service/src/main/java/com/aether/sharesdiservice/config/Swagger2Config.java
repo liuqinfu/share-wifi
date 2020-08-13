@@ -1,4 +1,4 @@
-package com.aether.sharesdi;
+package com.aether.sharesdiservice.config;
 
 import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,7 +30,7 @@ public class Swagger2Config {
         return new Docket(DocumentationType.SWAGGER_2)//文档类型：DocumentationType.SWAGGER_2
                 .apiInfo(apiInfo())//api信息
                 .select()//构建api选择器
-                .apis(RequestHandlerSelectors.basePackage("com.aether.sharesdi.controller"))//api选择器选择api的包
+                .apis(RequestHandlerSelectors.basePackage("com.aether.sharesdiservice.controller"))//api选择器选择api的包
                 .paths(PathSelectors.any())//api选择器选择包路径下任何api显示在文档中
                 .build();//创建文档
     }

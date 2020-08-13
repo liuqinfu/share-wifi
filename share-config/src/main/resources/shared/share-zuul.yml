@@ -10,6 +10,9 @@ zuul:
     share-sdi:
       path: /sdi/**
       serviceId: share-sdi
+    share-mainctl:
+      path: /main/**
+      serviceId: share-mainctl
 
 server:
   port: 8080

@@ -1,16 +1,20 @@
-package com.aether.sharesdi;
+package com.aether.sharesdiservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
+import org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * @author 我走路带风
  * @since 2020/8/12 13:40
  */
+//@SpringBootApplication(exclude = {RedisAutoConfiguration.class, RedisRepositoriesAutoConfiguration.class})
 @SpringBootApplication
 @EnableEurekaClient
+@EnableFeignClients
 public class SDIApplication {
     public static void main(String[] args) {
         SpringApplication.run(SDIApplication.class, args);
