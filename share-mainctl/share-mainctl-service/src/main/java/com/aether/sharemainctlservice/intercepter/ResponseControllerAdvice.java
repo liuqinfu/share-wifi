@@ -20,7 +20,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * @DESCRIPTION  省去接口层面的对返回数据的包装
  **/
 @Slf4j
-@RestControllerAdvice(basePackages = {"com.aether.sharemainctl.controller"}) // 注意哦，这里要加上需要扫描的包
+@RestControllerAdvice(basePackages = {"com.aether.sharemainctlservice.controller"}) // 注意哦，这里要加上需要扫描的包
 public class ResponseControllerAdvice implements ResponseBodyAdvice<Object> {
 
 

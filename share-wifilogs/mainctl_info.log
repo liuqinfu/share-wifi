@@ -1,0 +1,680 @@
+2020-08-14 14:27:10.001 [main] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 14:27:10.415 [main] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 14:27:10.416 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: [BootstrapPropertySource {name='bootstrapProperties-classpath:/shared/share-mainctl.yml'}, BootstrapPropertySource {name='bootstrapProperties-classpath:/shared/application.yml'}]
+2020-08-14 14:27:10.435 [main] INFO  com.aether.sharemainctlservice.MainctlApplication - No active profile set, falling back to default profiles: default
+2020-08-14 14:27:11.219 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-08-14 14:27:11.221 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-08-14 14:27:11.247 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 13ms. Found 0 Redis repository interfaces.
+2020-08-14 14:27:11.463 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=8148f612-49be-35a8-af65-4bc17ebb8aef
+2020-08-14 14:27:11.825 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8085 (http)
+2020-08-14 14:27:11.832 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+2020-08-14 14:27:11.832 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-08-14 14:27:11.833 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.37]
+2020-08-14 14:27:11.937 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-08-14 14:27:11.937 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1488 ms
+2020-08-14 14:27:12.022 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-08-14 14:27:12.032 [main] INFO  com.netflix.config.DynamicPropertyFactory - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@72ce812e
+2020-08-14 14:27:13.078 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-08-14 14:27:13.147 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-08-14 14:27:13.163 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-08-14 14:27:13.248 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-08-14 14:27:14.235 [main] INFO  o.s.cloud.netflix.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2020-08-14 14:27:14.259 [main] INFO  com.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2020-08-14 14:27:14.564 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using JSON encoding codec LegacyJacksonJson
+2020-08-14 14:27:14.564 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using JSON decoding codec LegacyJacksonJson
+2020-08-14 14:27:14.669 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using XML encoding codec XStreamXml
+2020-08-14 14:27:14.670 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using XML decoding codec XStreamXml
+2020-08-14 14:27:14.805 [main] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2020-08-14 14:27:14.948 [main] INFO  com.netflix.discovery.DiscoveryClient - Disable delta property : false
+2020-08-14 14:27:14.948 [main] INFO  com.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2020-08-14 14:27:14.948 [main] INFO  com.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2020-08-14 14:27:14.948 [main] INFO  com.netflix.discovery.DiscoveryClient - Application is null : false
+2020-08-14 14:27:14.948 [main] INFO  com.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2020-08-14 14:27:14.948 [main] INFO  com.netflix.discovery.DiscoveryClient - Application version is -1: true
+2020-08-14 14:27:14.948 [main] INFO  com.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2020-08-14 14:27:15.083 [main] INFO  com.netflix.discovery.DiscoveryClient - The response status is 200
+2020-08-14 14:27:15.084 [main] INFO  com.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2020-08-14 14:27:15.086 [main] INFO  com.netflix.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2020-08-14 14:27:15.088 [main] INFO  com.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1597386435088 with initial instances count: 0
+2020-08-14 14:27:15.090 [main] INFO  o.s.c.n.e.serviceregistry.EurekaServiceRegistry - Registering application SHARE-MAINCTL with eureka with status UP
+2020-08-14 14:27:15.091 [main] INFO  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1597386435091, current=UP, previous=STARTING]
+2020-08-14 14:27:15.092 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+2020-08-14 14:27:15.097 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 14:27:15.113 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8085 (http) with context path ''
+2020-08-14 14:27:15.114 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8085
+2020-08-14 14:27:15.567 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 14:27:15.576 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2020-08-14 14:27:15.591 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2020-08-14 14:27:15.607 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2020-08-14 14:27:15.634 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2020-08-14 14:27:16.033 [main] INFO  com.aether.sharemainctlservice.MainctlApplication - Started MainctlApplication in 7.408 seconds (JVM running for 8.184)
+2020-08-14 14:27:16.148 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_SHARE-MAINCTL/192.168.11.110:share-mainctl:8085: registering service...
+2020-08-14 14:27:16.192 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_SHARE-MAINCTL/192.168.11.110:share-mainctl:8085 - registration status: 204
+2020-08-14 14:27:16.552 [RMI TCP Connection(1)-192.168.11.110] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-08-14 14:27:16.553 [RMI TCP Connection(1)-192.168.11.110] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-08-14 14:27:16.561 [RMI TCP Connection(1)-192.168.11.110] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 8 ms
+2020-08-14 14:28:15.087 [DiscoveryClient-CacheRefreshExecutor-0] INFO  com.netflix.discovery.DiscoveryClient - Disable delta property : false
+2020-08-14 14:28:15.088 [DiscoveryClient-CacheRefreshExecutor-0] INFO  com.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2020-08-14 14:28:15.088 [DiscoveryClient-CacheRefreshExecutor-0] INFO  com.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2020-08-14 14:28:15.088 [DiscoveryClient-CacheRefreshExecutor-0] INFO  com.netflix.discovery.DiscoveryClient - Application is null : false
+2020-08-14 14:28:15.088 [DiscoveryClient-CacheRefreshExecutor-0] INFO  com.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2020-08-14 14:28:15.088 [DiscoveryClient-CacheRefreshExecutor-0] INFO  com.netflix.discovery.DiscoveryClient - Application version is -1: false
+2020-08-14 14:28:15.088 [DiscoveryClient-CacheRefreshExecutor-0] INFO  com.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2020-08-14 14:28:15.106 [DiscoveryClient-CacheRefreshExecutor-0] INFO  com.netflix.discovery.DiscoveryClient - The response status is 200
+2020-08-14 14:30:04.155 [http-nio-8085-exec-1] INFO  c.a.s.intercepter.DataInterceptor - request	GET /v2/api-docs-ext--------IP:0:0:0:0:0:0:0:1---------params:[group=share-mainctl]
+2020-08-14 14:32:14.951 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2020-08-14 14:32:16.222 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 14:32:16.534 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 14:32:37.002 [http-nio-8085-exec-3] INFO  c.a.s.intercepter.DataInterceptor - request	GET /sdi/registry--------IP:0:0:0:0:0:0:0:1---------params:[ip=192.168.11.110][port=65000]
+2020-08-14 14:36:03.028 [http-nio-8085-exec-8] INFO  c.a.s.intercepter.DataInterceptor - request	GET /sdi/registry--------IP:0:0:0:0:0:0:0:1---------params:[ip=192.168.11.110][port=65000]
+2020-08-14 14:36:26.291 [http-nio-8085-exec-4] INFO  c.a.s.intercepter.DataInterceptor - request	GET /sdi/registry--------IP:0:0:0:0:0:0:0:1---------params:[ip=192.168.11.110][port=65000][ext=你好]
+2020-08-14 14:37:14.952 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2020-08-14 14:37:16.567 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 14:37:16.888 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 14:41:53.828 [main] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 14:41:54.279 [main] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 14:41:54.280 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: [BootstrapPropertySource {name='bootstrapProperties-classpath:/shared/share-mainctl.yml'}, BootstrapPropertySource {name='bootstrapProperties-classpath:/shared/application.yml'}]
+2020-08-14 14:41:54.299 [main] INFO  com.aether.sharemainctlservice.MainctlApplication - No active profile set, falling back to default profiles: default
+2020-08-14 14:41:55.074 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-08-14 14:41:55.077 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-08-14 14:41:55.102 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 13ms. Found 0 Redis repository interfaces.
+2020-08-14 14:41:55.308 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=8148f612-49be-35a8-af65-4bc17ebb8aef
+2020-08-14 14:41:55.686 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8085 (http)
+2020-08-14 14:41:55.694 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+2020-08-14 14:41:55.695 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-08-14 14:41:55.695 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.37]
+2020-08-14 14:41:55.816 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-08-14 14:41:55.816 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1505 ms
+2020-08-14 14:41:55.903 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-08-14 14:41:55.913 [main] INFO  com.netflix.config.DynamicPropertyFactory - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@27b337bb
+2020-08-14 14:41:57.010 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-08-14 14:41:57.069 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-08-14 14:41:57.084 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-08-14 14:41:57.174 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-08-14 14:41:57.850 [main] INFO  o.s.cloud.netflix.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2020-08-14 14:41:57.873 [main] INFO  com.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2020-08-14 14:41:58.197 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using JSON encoding codec LegacyJacksonJson
+2020-08-14 14:41:58.198 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using JSON decoding codec LegacyJacksonJson
+2020-08-14 14:41:58.306 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using XML encoding codec XStreamXml
+2020-08-14 14:41:58.307 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using XML decoding codec XStreamXml
+2020-08-14 14:41:58.491 [main] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2020-08-14 14:41:58.632 [main] INFO  com.netflix.discovery.DiscoveryClient - Disable delta property : false
+2020-08-14 14:41:58.632 [main] INFO  com.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2020-08-14 14:41:58.633 [main] INFO  com.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2020-08-14 14:41:58.633 [main] INFO  com.netflix.discovery.DiscoveryClient - Application is null : false
+2020-08-14 14:41:58.633 [main] INFO  com.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2020-08-14 14:41:58.633 [main] INFO  com.netflix.discovery.DiscoveryClient - Application version is -1: true
+2020-08-14 14:41:58.633 [main] INFO  com.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2020-08-14 14:41:58.719 [main] INFO  com.netflix.discovery.DiscoveryClient - The response status is 200
+2020-08-14 14:41:58.721 [main] INFO  com.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2020-08-14 14:41:58.723 [main] INFO  com.netflix.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2020-08-14 14:41:58.725 [main] INFO  com.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1597387318724 with initial instances count: 2
+2020-08-14 14:41:58.727 [main] INFO  o.s.c.n.e.serviceregistry.EurekaServiceRegistry - Registering application SHARE-MAINCTL with eureka with status UP
+2020-08-14 14:41:58.727 [main] INFO  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1597387318727, current=UP, previous=STARTING]
+2020-08-14 14:41:58.728 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+2020-08-14 14:41:58.731 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 14:41:58.747 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8085 (http) with context path ''
+2020-08-14 14:41:58.748 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8085
+2020-08-14 14:41:59.051 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2020-08-14 14:41:59.062 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 14:41:59.063 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2020-08-14 14:41:59.238 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2020-08-14 14:41:59.240 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2020-08-14 14:41:59.351 [main] INFO  com.aether.sharemainctlservice.MainctlApplication - Started MainctlApplication in 6.702 seconds (JVM running for 7.941)
+2020-08-14 14:41:59.391 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_SHARE-MAINCTL/192.168.11.110:share-mainctl:8085: registering service...
+2020-08-14 14:41:59.419 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_SHARE-MAINCTL/192.168.11.110:share-mainctl:8085 - registration status: 204
+2020-08-14 14:41:59.763 [RMI TCP Connection(1)-192.168.11.110] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-08-14 14:41:59.764 [RMI TCP Connection(1)-192.168.11.110] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-08-14 14:41:59.769 [RMI TCP Connection(1)-192.168.11.110] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+2020-08-14 14:44:26.293 [http-nio-8085-exec-1] INFO  c.a.s.intercepter.DataInterceptor - request	GET /sdi/registry--------IP:0:0:0:0:0:0:0:1---------params:[ip=192.168.11.110][port=65000]
+2020-08-14 14:44:26.324 [http-nio-8085-exec-1] INFO  c.a.s.intercepter.ResponseControllerAdvice - response  GET	/sdi/registry--------IP: 192.168.11.110---------response: {"code":200,"msg":"操作成功","data":null}
+2020-08-14 14:46:58.635 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2020-08-14 14:46:59.458 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 14:46:59.816 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 14:47:28.145 [main] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 14:47:28.644 [main] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 14:47:28.644 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: [BootstrapPropertySource {name='bootstrapProperties-classpath:/shared/share-mainctl.yml'}, BootstrapPropertySource {name='bootstrapProperties-classpath:/shared/application.yml'}]
+2020-08-14 14:47:28.664 [main] INFO  com.aether.sharemainctlservice.MainctlApplication - No active profile set, falling back to default profiles: default
+2020-08-14 14:47:29.428 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-08-14 14:47:29.430 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-08-14 14:47:29.456 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 13ms. Found 0 Redis repository interfaces.
+2020-08-14 14:47:29.668 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=8148f612-49be-35a8-af65-4bc17ebb8aef
+2020-08-14 14:47:29.987 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8085 (http)
+2020-08-14 14:47:29.993 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+2020-08-14 14:47:29.994 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-08-14 14:47:29.994 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.37]
+2020-08-14 14:47:30.102 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-08-14 14:47:30.103 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1427 ms
+2020-08-14 14:47:30.168 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-08-14 14:47:30.175 [main] INFO  com.netflix.config.DynamicPropertyFactory - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@794eeaf8
+2020-08-14 14:47:31.176 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-08-14 14:47:31.232 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-08-14 14:47:31.246 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-08-14 14:47:31.329 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-08-14 14:47:32.006 [main] INFO  o.s.cloud.netflix.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2020-08-14 14:47:32.030 [main] INFO  com.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2020-08-14 14:47:32.291 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using JSON encoding codec LegacyJacksonJson
+2020-08-14 14:47:32.291 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using JSON decoding codec LegacyJacksonJson
+2020-08-14 14:47:32.374 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using XML encoding codec XStreamXml
+2020-08-14 14:47:32.374 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using XML decoding codec XStreamXml
+2020-08-14 14:47:32.550 [main] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2020-08-14 14:47:32.693 [main] INFO  com.netflix.discovery.DiscoveryClient - Disable delta property : false
+2020-08-14 14:47:32.693 [main] INFO  com.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2020-08-14 14:47:32.693 [main] INFO  com.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2020-08-14 14:47:32.693 [main] INFO  com.netflix.discovery.DiscoveryClient - Application is null : false
+2020-08-14 14:47:32.694 [main] INFO  com.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2020-08-14 14:47:32.694 [main] INFO  com.netflix.discovery.DiscoveryClient - Application version is -1: true
+2020-08-14 14:47:32.694 [main] INFO  com.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2020-08-14 14:47:32.784 [main] INFO  com.netflix.discovery.DiscoveryClient - The response status is 200
+2020-08-14 14:47:32.787 [main] INFO  com.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2020-08-14 14:47:32.788 [main] INFO  com.netflix.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2020-08-14 14:47:32.791 [main] INFO  com.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1597387652790 with initial instances count: 2
+2020-08-14 14:47:32.793 [main] INFO  o.s.c.n.e.serviceregistry.EurekaServiceRegistry - Registering application SHARE-MAINCTL with eureka with status UP
+2020-08-14 14:47:32.793 [main] INFO  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1597387652793, current=UP, previous=STARTING]
+2020-08-14 14:47:32.795 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+2020-08-14 14:47:32.799 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 14:47:32.834 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8085 (http) with context path ''
+2020-08-14 14:47:32.835 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8085
+2020-08-14 14:47:33.148 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2020-08-14 14:47:33.158 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2020-08-14 14:47:33.175 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 14:47:33.294 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2020-08-14 14:47:33.311 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2020-08-14 14:47:33.405 [main] INFO  com.aether.sharemainctlservice.MainctlApplication - Started MainctlApplication in 6.668 seconds (JVM running for 7.465)
+2020-08-14 14:47:33.411 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_SHARE-MAINCTL/192.168.11.110:share-mainctl:8085: registering service...
+2020-08-14 14:47:33.444 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_SHARE-MAINCTL/192.168.11.110:share-mainctl:8085 - registration status: 204
+2020-08-14 14:47:33.769 [RMI TCP Connection(2)-192.168.11.110] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-08-14 14:47:33.769 [RMI TCP Connection(2)-192.168.11.110] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-08-14 14:47:33.776 [RMI TCP Connection(2)-192.168.11.110] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 7 ms
+2020-08-14 14:48:08.074 [http-nio-8085-exec-1] INFO  c.a.s.intercepter.DataInterceptor - request	GET /sdi/registry--------IP:0:0:0:0:0:0:0:1---------params:[ip=192.168.11.110][port=65000]
+2020-08-14 14:48:08.107 [http-nio-8085-exec-1] INFO  c.a.s.intercepter.ResponseControllerAdvice - response  GET	/sdi/registry--------IP: 192.168.11.110---------response: {"code":200,"msg":"操作成功","data":null}
+2020-08-14 14:48:08.988 [http-nio-8085-exec-2] INFO  c.a.s.intercepter.DataInterceptor - request	GET /sdi/registry--------IP:0:0:0:0:0:0:0:1---------params:[ip=192.168.11.110][port=65000]
+2020-08-14 14:48:08.990 [http-nio-8085-exec-2] INFO  c.a.s.intercepter.ResponseControllerAdvice - response  GET	/sdi/registry--------IP: 192.168.11.110---------response: {"code":200,"msg":"操作成功","data":null}
+2020-08-14 14:48:09.489 [http-nio-8085-exec-3] INFO  c.a.s.intercepter.DataInterceptor - request	GET /sdi/registry--------IP:0:0:0:0:0:0:0:1---------params:[ip=192.168.11.110][port=65000]
+2020-08-14 14:48:09.491 [http-nio-8085-exec-3] INFO  c.a.s.intercepter.ResponseControllerAdvice - response  GET	/sdi/registry--------IP: 192.168.11.110---------response: {"code":200,"msg":"操作成功","data":null}
+2020-08-14 14:48:09.714 [http-nio-8085-exec-8] INFO  c.a.s.intercepter.DataInterceptor - request	GET /sdi/registry--------IP:0:0:0:0:0:0:0:1---------params:[ip=192.168.11.110][port=65000]
+2020-08-14 14:48:09.716 [http-nio-8085-exec-8] INFO  c.a.s.intercepter.ResponseControllerAdvice - response  GET	/sdi/registry--------IP: 192.168.11.110---------response: {"code":200,"msg":"操作成功","data":null}
+2020-08-14 14:48:09.889 [http-nio-8085-exec-7] INFO  c.a.s.intercepter.DataInterceptor - request	GET /sdi/registry--------IP:0:0:0:0:0:0:0:1---------params:[ip=192.168.11.110][port=65000]
+2020-08-14 14:48:09.891 [http-nio-8085-exec-7] INFO  c.a.s.intercepter.ResponseControllerAdvice - response  GET	/sdi/registry--------IP: 192.168.11.110---------response: {"code":200,"msg":"操作成功","data":null}
+2020-08-14 14:51:47.891 [main] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 14:51:48.284 [main] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 14:51:48.285 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: [BootstrapPropertySource {name='bootstrapProperties-classpath:/shared/share-mainctl.yml'}, BootstrapPropertySource {name='bootstrapProperties-classpath:/shared/application.yml'}]
+2020-08-14 14:51:48.304 [main] INFO  com.aether.sharemainctlservice.MainctlApplication - No active profile set, falling back to default profiles: default
+2020-08-14 14:51:49.092 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-08-14 14:51:49.094 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-08-14 14:51:49.120 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 14ms. Found 0 Redis repository interfaces.
+2020-08-14 14:51:49.337 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=8148f612-49be-35a8-af65-4bc17ebb8aef
+2020-08-14 14:51:49.652 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8085 (http)
+2020-08-14 14:51:49.659 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+2020-08-14 14:51:49.659 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-08-14 14:51:49.660 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.37]
+2020-08-14 14:51:49.760 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-08-14 14:51:49.760 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1443 ms
+2020-08-14 14:51:49.823 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-08-14 14:51:49.831 [main] INFO  com.netflix.config.DynamicPropertyFactory - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@3b97907c
+2020-08-14 14:51:50.825 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-08-14 14:51:50.882 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-08-14 14:51:50.894 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-08-14 14:51:50.971 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-08-14 14:51:51.640 [main] INFO  o.s.cloud.netflix.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2020-08-14 14:51:51.662 [main] INFO  com.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2020-08-14 14:51:51.921 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using JSON encoding codec LegacyJacksonJson
+2020-08-14 14:51:51.921 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using JSON decoding codec LegacyJacksonJson
+2020-08-14 14:51:52.002 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using XML encoding codec XStreamXml
+2020-08-14 14:51:52.002 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using XML decoding codec XStreamXml
+2020-08-14 14:51:52.172 [main] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2020-08-14 14:51:52.324 [main] INFO  com.netflix.discovery.DiscoveryClient - Disable delta property : false
+2020-08-14 14:51:52.324 [main] INFO  com.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2020-08-14 14:51:52.324 [main] INFO  com.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2020-08-14 14:51:52.324 [main] INFO  com.netflix.discovery.DiscoveryClient - Application is null : false
+2020-08-14 14:51:52.324 [main] INFO  com.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2020-08-14 14:51:52.324 [main] INFO  com.netflix.discovery.DiscoveryClient - Application version is -1: true
+2020-08-14 14:51:52.325 [main] INFO  com.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2020-08-14 14:51:52.410 [main] INFO  com.netflix.discovery.DiscoveryClient - The response status is 200
+2020-08-14 14:51:52.413 [main] INFO  com.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2020-08-14 14:51:52.415 [main] INFO  com.netflix.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2020-08-14 14:51:52.418 [main] INFO  com.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1597387912417 with initial instances count: 2
+2020-08-14 14:51:52.420 [main] INFO  o.s.c.n.e.serviceregistry.EurekaServiceRegistry - Registering application SHARE-MAINCTL with eureka with status UP
+2020-08-14 14:51:52.420 [main] INFO  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1597387912420, current=UP, previous=STARTING]
+2020-08-14 14:51:52.421 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+2020-08-14 14:51:52.424 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 14:51:52.441 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8085 (http) with context path ''
+2020-08-14 14:51:52.442 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8085
+2020-08-14 14:51:52.758 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2020-08-14 14:51:52.770 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2020-08-14 14:51:52.800 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2020-08-14 14:51:52.809 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 14:51:52.954 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2020-08-14 14:51:53.025 [main] INFO  com.aether.sharemainctlservice.MainctlApplication - Started MainctlApplication in 6.584 seconds (JVM running for 7.582)
+2020-08-14 14:51:53.062 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_SHARE-MAINCTL/192.168.11.110:share-mainctl:8085: registering service...
+2020-08-14 14:51:53.134 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_SHARE-MAINCTL/192.168.11.110:share-mainctl:8085 - registration status: 204
+2020-08-14 14:51:53.230 [RMI TCP Connection(1)-192.168.11.110] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-08-14 14:51:53.230 [RMI TCP Connection(1)-192.168.11.110] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-08-14 14:51:53.236 [RMI TCP Connection(1)-192.168.11.110] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 6 ms
+2020-08-14 14:52:29.725 [http-nio-8085-exec-1] INFO  c.a.s.intercepter.DataInterceptor - request	GET /sdi/registry--------IP:0:0:0:0:0:0:0:1---------params:[ip=192.168.11.110][port=65000]
+2020-08-14 14:52:48.182 [http-nio-8085-exec-3] INFO  c.a.s.intercepter.DataInterceptor - request	GET /sdi/registry--------IP:0:0:0:0:0:0:0:1---------params:[ip=192.168.11.110][port=65000]
+2020-08-14 14:52:57.370 [main] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 14:52:57.811 [main] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 14:52:57.812 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: [BootstrapPropertySource {name='bootstrapProperties-classpath:/shared/share-mainctl.yml'}, BootstrapPropertySource {name='bootstrapProperties-classpath:/shared/application.yml'}]
+2020-08-14 14:52:57.834 [main] INFO  com.aether.sharemainctlservice.MainctlApplication - No active profile set, falling back to default profiles: default
+2020-08-14 14:52:58.692 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-08-14 14:52:58.695 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-08-14 14:52:58.735 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 14ms. Found 0 Redis repository interfaces.
+2020-08-14 14:52:59.025 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=8148f612-49be-35a8-af65-4bc17ebb8aef
+2020-08-14 14:52:59.348 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8085 (http)
+2020-08-14 14:52:59.356 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+2020-08-14 14:52:59.357 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-08-14 14:52:59.357 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.37]
+2020-08-14 14:52:59.468 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-08-14 14:52:59.468 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1619 ms
+2020-08-14 14:52:59.545 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-08-14 14:52:59.555 [main] INFO  com.netflix.config.DynamicPropertyFactory - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@3d71e10b
+2020-08-14 14:53:00.720 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-08-14 14:53:00.788 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-08-14 14:53:00.804 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-08-14 14:53:00.895 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-08-14 14:53:01.674 [main] INFO  o.s.cloud.netflix.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2020-08-14 14:53:01.707 [main] INFO  com.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2020-08-14 14:53:02.007 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using JSON encoding codec LegacyJacksonJson
+2020-08-14 14:53:02.007 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using JSON decoding codec LegacyJacksonJson
+2020-08-14 14:53:02.129 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using XML encoding codec XStreamXml
+2020-08-14 14:53:02.129 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using XML decoding codec XStreamXml
+2020-08-14 14:53:02.368 [main] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2020-08-14 14:53:02.517 [main] INFO  com.netflix.discovery.DiscoveryClient - Disable delta property : false
+2020-08-14 14:53:02.518 [main] INFO  com.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2020-08-14 14:53:02.518 [main] INFO  com.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2020-08-14 14:53:02.518 [main] INFO  com.netflix.discovery.DiscoveryClient - Application is null : false
+2020-08-14 14:53:02.518 [main] INFO  com.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2020-08-14 14:53:02.518 [main] INFO  com.netflix.discovery.DiscoveryClient - Application version is -1: true
+2020-08-14 14:53:02.518 [main] INFO  com.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2020-08-14 14:53:02.629 [main] INFO  com.netflix.discovery.DiscoveryClient - The response status is 200
+2020-08-14 14:53:02.632 [main] INFO  com.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2020-08-14 14:53:02.635 [main] INFO  com.netflix.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2020-08-14 14:53:02.638 [main] INFO  com.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1597387982637 with initial instances count: 2
+2020-08-14 14:53:02.639 [main] INFO  o.s.c.n.e.serviceregistry.EurekaServiceRegistry - Registering application SHARE-MAINCTL with eureka with status UP
+2020-08-14 14:53:02.640 [main] INFO  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1597387982640, current=UP, previous=STARTING]
+2020-08-14 14:53:02.641 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+2020-08-14 14:53:02.799 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 14:53:02.820 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8085 (http) with context path ''
+2020-08-14 14:53:02.821 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8085
+2020-08-14 14:53:03.155 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2020-08-14 14:53:03.166 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2020-08-14 14:53:03.200 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2020-08-14 14:53:03.270 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 14:53:03.309 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2020-08-14 14:53:03.329 [main] INFO  com.aether.sharemainctlservice.MainctlApplication - Started MainctlApplication in 7.277 seconds (JVM running for 8.958)
+2020-08-14 14:53:03.428 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_SHARE-MAINCTL/192.168.11.110:share-mainctl:8085: registering service...
+2020-08-14 14:53:03.466 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_SHARE-MAINCTL/192.168.11.110:share-mainctl:8085 - registration status: 204
+2020-08-14 14:53:05.742 [RMI TCP Connection(4)-192.168.11.110] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-08-14 14:53:05.742 [RMI TCP Connection(4)-192.168.11.110] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-08-14 14:53:05.749 [RMI TCP Connection(4)-192.168.11.110] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 7 ms
+2020-08-14 14:53:23.057 [SpringContextShutdownHook] INFO  o.s.c.n.e.serviceregistry.EurekaServiceRegistry - Unregistering application SHARE-MAINCTL with eureka with status DOWN
+2020-08-14 14:53:23.060 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_SHARE-MAINCTL/192.168.11.110:share-mainctl:8085: registering service...
+2020-08-14 14:53:23.065 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_SHARE-MAINCTL/192.168.11.110:share-mainctl:8085 - registration status: 204
+2020-08-14 14:53:23.220 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-08-14 14:53:23.228 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2020-08-14 14:53:23.231 [SpringContextShutdownHook] INFO  com.netflix.discovery.DiscoveryClient - Shutting down DiscoveryClient ...
+2020-08-14 14:53:26.232 [SpringContextShutdownHook] INFO  com.netflix.discovery.DiscoveryClient - Unregistering ...
+2020-08-14 14:53:26.275 [SpringContextShutdownHook] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_SHARE-MAINCTL/192.168.11.110:share-mainctl:8085 - deregister  status: 200
+2020-08-14 14:53:26.281 [SpringContextShutdownHook] INFO  com.netflix.discovery.DiscoveryClient - Completed shut down of DiscoveryClient
+2020-08-14 14:53:30.156 [main] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 14:53:30.634 [main] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 14:53:30.635 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: [BootstrapPropertySource {name='bootstrapProperties-classpath:/shared/share-mainctl.yml'}, BootstrapPropertySource {name='bootstrapProperties-classpath:/shared/application.yml'}]
+2020-08-14 14:53:30.653 [main] INFO  com.aether.sharemainctlservice.MainctlApplication - No active profile set, falling back to default profiles: default
+2020-08-14 14:53:31.405 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-08-14 14:53:31.407 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-08-14 14:53:31.434 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 13ms. Found 0 Redis repository interfaces.
+2020-08-14 14:53:31.642 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=8148f612-49be-35a8-af65-4bc17ebb8aef
+2020-08-14 14:53:31.978 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8085 (http)
+2020-08-14 14:53:31.985 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+2020-08-14 14:53:31.986 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-08-14 14:53:31.986 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.37]
+2020-08-14 14:53:32.089 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-08-14 14:53:32.089 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1423 ms
+2020-08-14 14:53:32.156 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-08-14 14:53:32.164 [main] INFO  com.netflix.config.DynamicPropertyFactory - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@7c96c85
+2020-08-14 14:53:33.153 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-08-14 14:53:33.213 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-08-14 14:53:33.227 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-08-14 14:53:33.306 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-08-14 14:53:33.982 [main] INFO  o.s.cloud.netflix.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2020-08-14 14:53:34.006 [main] INFO  com.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2020-08-14 14:53:34.269 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using JSON encoding codec LegacyJacksonJson
+2020-08-14 14:53:34.269 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using JSON decoding codec LegacyJacksonJson
+2020-08-14 14:53:34.352 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using XML encoding codec XStreamXml
+2020-08-14 14:53:34.353 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using XML decoding codec XStreamXml
+2020-08-14 14:53:34.553 [main] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2020-08-14 14:53:34.700 [main] INFO  com.netflix.discovery.DiscoveryClient - Disable delta property : false
+2020-08-14 14:53:34.700 [main] INFO  com.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2020-08-14 14:53:34.700 [main] INFO  com.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2020-08-14 14:53:34.700 [main] INFO  com.netflix.discovery.DiscoveryClient - Application is null : false
+2020-08-14 14:53:34.700 [main] INFO  com.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2020-08-14 14:53:34.700 [main] INFO  com.netflix.discovery.DiscoveryClient - Application version is -1: true
+2020-08-14 14:53:34.700 [main] INFO  com.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2020-08-14 14:53:34.785 [main] INFO  com.netflix.discovery.DiscoveryClient - The response status is 200
+2020-08-14 14:53:34.787 [main] INFO  com.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2020-08-14 14:53:34.789 [main] INFO  com.netflix.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2020-08-14 14:53:34.791 [main] INFO  com.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1597388014790 with initial instances count: 1
+2020-08-14 14:53:34.793 [main] INFO  o.s.c.n.e.serviceregistry.EurekaServiceRegistry - Registering application SHARE-MAINCTL with eureka with status UP
+2020-08-14 14:53:34.793 [main] INFO  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1597388014793, current=UP, previous=STARTING]
+2020-08-14 14:53:34.794 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+2020-08-14 14:53:34.797 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 14:53:34.815 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8085 (http) with context path ''
+2020-08-14 14:53:34.816 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8085
+2020-08-14 14:53:35.126 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2020-08-14 14:53:35.138 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2020-08-14 14:53:35.150 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 14:53:35.311 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2020-08-14 14:53:35.322 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2020-08-14 14:53:35.424 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_SHARE-MAINCTL/192.168.11.110:share-mainctl:8085: registering service...
+2020-08-14 14:53:35.426 [main] INFO  com.aether.sharemainctlservice.MainctlApplication - Started MainctlApplication in 6.593 seconds (JVM running for 7.291)
+2020-08-14 14:53:35.450 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_SHARE-MAINCTL/192.168.11.110:share-mainctl:8085 - registration status: 204
+2020-08-14 14:53:35.961 [RMI TCP Connection(3)-192.168.11.110] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-08-14 14:53:35.961 [RMI TCP Connection(3)-192.168.11.110] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-08-14 14:53:35.968 [RMI TCP Connection(3)-192.168.11.110] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 7 ms
+2020-08-14 14:53:45.249 [http-nio-8085-exec-1] INFO  c.a.s.intercepter.DataInterceptor - request	GET /sdi/registry--------IP:0:0:0:0:0:0:0:1---------params:[ip=192.168.11.110][port=65000]
+2020-08-14 14:55:38.378 [main] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 14:55:38.815 [main] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 14:55:38.816 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: [BootstrapPropertySource {name='bootstrapProperties-classpath:/shared/share-mainctl.yml'}, BootstrapPropertySource {name='bootstrapProperties-classpath:/shared/application.yml'}]
+2020-08-14 14:55:38.838 [main] INFO  com.aether.sharemainctlservice.MainctlApplication - No active profile set, falling back to default profiles: default
+2020-08-14 14:55:39.800 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-08-14 14:55:39.803 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-08-14 14:55:39.830 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 14ms. Found 0 Redis repository interfaces.
+2020-08-14 14:55:40.058 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=8148f612-49be-35a8-af65-4bc17ebb8aef
+2020-08-14 14:55:40.441 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8085 (http)
+2020-08-14 14:55:40.449 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+2020-08-14 14:55:40.450 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-08-14 14:55:40.450 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.37]
+2020-08-14 14:55:40.576 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-08-14 14:55:40.576 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1721 ms
+2020-08-14 14:55:40.654 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-08-14 14:55:40.663 [main] INFO  com.netflix.config.DynamicPropertyFactory - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@1de85972
+2020-08-14 14:55:41.754 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-08-14 14:55:41.821 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-08-14 14:55:41.837 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-08-14 14:55:41.941 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-08-14 14:55:42.683 [main] INFO  o.s.cloud.netflix.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2020-08-14 14:55:42.712 [main] INFO  com.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2020-08-14 14:55:42.999 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using JSON encoding codec LegacyJacksonJson
+2020-08-14 14:55:42.999 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using JSON decoding codec LegacyJacksonJson
+2020-08-14 14:55:43.108 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using XML encoding codec XStreamXml
+2020-08-14 14:55:43.108 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using XML decoding codec XStreamXml
+2020-08-14 14:55:43.346 [main] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2020-08-14 14:55:43.491 [main] INFO  com.netflix.discovery.DiscoveryClient - Disable delta property : false
+2020-08-14 14:55:43.491 [main] INFO  com.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2020-08-14 14:55:43.491 [main] INFO  com.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2020-08-14 14:55:43.491 [main] INFO  com.netflix.discovery.DiscoveryClient - Application is null : false
+2020-08-14 14:55:43.491 [main] INFO  com.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2020-08-14 14:55:43.491 [main] INFO  com.netflix.discovery.DiscoveryClient - Application version is -1: true
+2020-08-14 14:55:43.491 [main] INFO  com.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2020-08-14 14:55:43.602 [main] INFO  com.netflix.discovery.DiscoveryClient - The response status is 200
+2020-08-14 14:55:43.606 [main] INFO  com.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2020-08-14 14:55:43.609 [main] INFO  com.netflix.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2020-08-14 14:55:43.611 [main] INFO  com.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1597388143611 with initial instances count: 2
+2020-08-14 14:55:43.613 [main] INFO  o.s.c.n.e.serviceregistry.EurekaServiceRegistry - Registering application SHARE-MAINCTL with eureka with status UP
+2020-08-14 14:55:43.614 [main] INFO  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1597388143614, current=UP, previous=STARTING]
+2020-08-14 14:55:43.615 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+2020-08-14 14:55:43.621 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 14:55:43.638 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8085 (http) with context path ''
+2020-08-14 14:55:43.639 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8085
+2020-08-14 14:55:43.941 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2020-08-14 14:55:43.954 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2020-08-14 14:55:43.958 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 14:55:44.112 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2020-08-14 14:55:44.113 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2020-08-14 14:55:44.266 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_SHARE-MAINCTL/192.168.11.110:share-mainctl:8085: registering service...
+2020-08-14 14:55:44.292 [main] INFO  com.aether.sharemainctlservice.MainctlApplication - Started MainctlApplication in 7.265 seconds (JVM running for 8.415)
+2020-08-14 14:55:44.302 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_SHARE-MAINCTL/192.168.11.110:share-mainctl:8085 - registration status: 204
+2020-08-14 14:55:44.548 [RMI TCP Connection(1)-192.168.11.110] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-08-14 14:55:44.548 [RMI TCP Connection(1)-192.168.11.110] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-08-14 14:55:44.555 [RMI TCP Connection(1)-192.168.11.110] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 7 ms
+2020-08-14 14:55:50.701 [http-nio-8085-exec-1] INFO  c.a.s.intercepter.DataInterceptor - request	GET /sdi/registry--------IP:0:0:0:0:0:0:0:1---------params:[ip=192.168.11.110][port=65000]
+2020-08-14 15:00:20.230 [main] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 15:00:20.675 [main] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 15:00:20.676 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: [BootstrapPropertySource {name='bootstrapProperties-classpath:/shared/share-mainctl.yml'}, BootstrapPropertySource {name='bootstrapProperties-classpath:/shared/application.yml'}]
+2020-08-14 15:00:20.696 [main] INFO  com.aether.sharemainctlservice.MainctlApplication - No active profile set, falling back to default profiles: default
+2020-08-14 15:00:21.622 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-08-14 15:00:21.625 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-08-14 15:00:21.665 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 14ms. Found 0 Redis repository interfaces.
+2020-08-14 15:00:21.913 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=8148f612-49be-35a8-af65-4bc17ebb8aef
+2020-08-14 15:00:22.315 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8085 (http)
+2020-08-14 15:00:22.324 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+2020-08-14 15:00:22.325 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-08-14 15:00:22.325 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.37]
+2020-08-14 15:00:22.447 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-08-14 15:00:22.448 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1737 ms
+2020-08-14 15:00:22.536 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-08-14 15:00:22.546 [main] INFO  com.netflix.config.DynamicPropertyFactory - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@1e29a81a
+2020-08-14 15:00:23.679 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-08-14 15:00:23.748 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-08-14 15:00:23.767 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-08-14 15:00:23.890 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-08-14 15:00:24.666 [main] INFO  o.s.cloud.netflix.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2020-08-14 15:00:24.697 [main] INFO  com.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2020-08-14 15:00:25.044 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using JSON encoding codec LegacyJacksonJson
+2020-08-14 15:00:25.045 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using JSON decoding codec LegacyJacksonJson
+2020-08-14 15:00:25.161 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using XML encoding codec XStreamXml
+2020-08-14 15:00:25.161 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using XML decoding codec XStreamXml
+2020-08-14 15:00:25.404 [main] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2020-08-14 15:00:25.552 [main] INFO  com.netflix.discovery.DiscoveryClient - Disable delta property : false
+2020-08-14 15:00:25.552 [main] INFO  com.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2020-08-14 15:00:25.552 [main] INFO  com.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2020-08-14 15:00:25.552 [main] INFO  com.netflix.discovery.DiscoveryClient - Application is null : false
+2020-08-14 15:00:25.552 [main] INFO  com.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2020-08-14 15:00:25.553 [main] INFO  com.netflix.discovery.DiscoveryClient - Application version is -1: true
+2020-08-14 15:00:25.553 [main] INFO  com.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2020-08-14 15:00:25.662 [main] INFO  com.netflix.discovery.DiscoveryClient - The response status is 200
+2020-08-14 15:00:25.664 [main] INFO  com.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2020-08-14 15:00:25.667 [main] INFO  com.netflix.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2020-08-14 15:00:25.670 [main] INFO  com.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1597388425669 with initial instances count: 2
+2020-08-14 15:00:25.672 [main] INFO  o.s.c.n.e.serviceregistry.EurekaServiceRegistry - Registering application SHARE-MAINCTL with eureka with status UP
+2020-08-14 15:00:25.673 [main] INFO  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1597388425673, current=UP, previous=STARTING]
+2020-08-14 15:00:25.674 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+2020-08-14 15:00:25.676 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 15:00:25.844 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8085 (http) with context path ''
+2020-08-14 15:00:25.845 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8085
+2020-08-14 15:00:26.146 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2020-08-14 15:00:26.158 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 15:00:26.161 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2020-08-14 15:00:26.194 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2020-08-14 15:00:26.200 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2020-08-14 15:00:26.327 [main] INFO  com.aether.sharemainctlservice.MainctlApplication - Started MainctlApplication in 7.582 seconds (JVM running for 8.619)
+2020-08-14 15:00:26.347 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_SHARE-MAINCTL/192.168.11.110:share-mainctl:8085: registering service...
+2020-08-14 15:00:26.377 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_SHARE-MAINCTL/192.168.11.110:share-mainctl:8085 - registration status: 204
+2020-08-14 15:00:26.530 [RMI TCP Connection(3)-192.168.11.110] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-08-14 15:00:26.530 [RMI TCP Connection(3)-192.168.11.110] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-08-14 15:00:26.537 [RMI TCP Connection(3)-192.168.11.110] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 7 ms
+2020-08-14 15:00:33.444 [http-nio-8085-exec-1] INFO  c.a.s.intercepter.DataInterceptor - request	GET /sdi/registry--------IP:0:0:0:0:0:0:0:1---------params:[ip=192.168.11.110][port=65000]
+2020-08-14 15:02:37.155 [main] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 15:02:37.553 [main] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 15:02:37.554 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: [BootstrapPropertySource {name='bootstrapProperties-classpath:/shared/share-mainctl.yml'}, BootstrapPropertySource {name='bootstrapProperties-classpath:/shared/application.yml'}]
+2020-08-14 15:02:37.575 [main] INFO  com.aether.sharemainctlservice.MainctlApplication - No active profile set, falling back to default profiles: default
+2020-08-14 15:02:38.416 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-08-14 15:02:38.419 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-08-14 15:02:38.458 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 24ms. Found 0 Redis repository interfaces.
+2020-08-14 15:02:38.740 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=8148f612-49be-35a8-af65-4bc17ebb8aef
+2020-08-14 15:02:39.053 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8085 (http)
+2020-08-14 15:02:39.061 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+2020-08-14 15:02:39.062 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-08-14 15:02:39.062 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.37]
+2020-08-14 15:02:39.185 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-08-14 15:02:39.185 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1595 ms
+2020-08-14 15:02:39.262 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-08-14 15:02:39.272 [main] INFO  com.netflix.config.DynamicPropertyFactory - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@6d3163a6
+2020-08-14 15:02:40.362 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-08-14 15:02:40.426 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-08-14 15:02:40.441 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-08-14 15:02:40.532 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-08-14 15:02:41.270 [main] INFO  o.s.cloud.netflix.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2020-08-14 15:02:41.299 [main] INFO  com.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2020-08-14 15:02:41.574 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using JSON encoding codec LegacyJacksonJson
+2020-08-14 15:02:41.575 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using JSON decoding codec LegacyJacksonJson
+2020-08-14 15:02:41.678 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using XML encoding codec XStreamXml
+2020-08-14 15:02:41.678 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using XML decoding codec XStreamXml
+2020-08-14 15:02:41.930 [main] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2020-08-14 15:02:42.077 [main] INFO  com.netflix.discovery.DiscoveryClient - Disable delta property : false
+2020-08-14 15:02:42.077 [main] INFO  com.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2020-08-14 15:02:42.077 [main] INFO  com.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2020-08-14 15:02:42.077 [main] INFO  com.netflix.discovery.DiscoveryClient - Application is null : false
+2020-08-14 15:02:42.077 [main] INFO  com.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2020-08-14 15:02:42.077 [main] INFO  com.netflix.discovery.DiscoveryClient - Application version is -1: true
+2020-08-14 15:02:42.077 [main] INFO  com.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2020-08-14 15:02:42.178 [main] INFO  com.netflix.discovery.DiscoveryClient - The response status is 200
+2020-08-14 15:02:42.181 [main] INFO  com.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2020-08-14 15:02:42.183 [main] INFO  com.netflix.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2020-08-14 15:02:42.187 [main] INFO  com.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1597388562186 with initial instances count: 2
+2020-08-14 15:02:42.188 [main] INFO  o.s.c.n.e.serviceregistry.EurekaServiceRegistry - Registering application SHARE-MAINCTL with eureka with status UP
+2020-08-14 15:02:42.189 [main] INFO  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1597388562189, current=UP, previous=STARTING]
+2020-08-14 15:02:42.190 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+2020-08-14 15:02:42.194 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 15:02:42.358 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8085 (http) with context path ''
+2020-08-14 15:02:42.359 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8085
+2020-08-14 15:02:42.670 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2020-08-14 15:02:42.679 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 15:02:42.685 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2020-08-14 15:02:42.714 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2020-08-14 15:02:42.723 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2020-08-14 15:02:42.827 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_SHARE-MAINCTL/192.168.11.110:share-mainctl:8085: registering service...
+2020-08-14 15:02:42.853 [main] INFO  com.aether.sharemainctlservice.MainctlApplication - Started MainctlApplication in 6.978 seconds (JVM running for 8.547)
+2020-08-14 15:02:42.856 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_SHARE-MAINCTL/192.168.11.110:share-mainctl:8085 - registration status: 204
+2020-08-14 15:02:43.055 [RMI TCP Connection(1)-192.168.11.110] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-08-14 15:02:43.055 [RMI TCP Connection(1)-192.168.11.110] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-08-14 15:02:43.062 [RMI TCP Connection(1)-192.168.11.110] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 6 ms
+2020-08-14 15:07:42.080 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2020-08-14 15:07:42.887 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 15:07:43.190 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 15:09:07.409 [http-nio-8085-exec-2] INFO  c.a.s.intercepter.DataInterceptor - request	GET /sdi/registry--------IP:0:0:0:0:0:0:0:1---------params:[ip=192.168.11.110][port=65000]
+2020-08-14 15:12:42.082 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2020-08-14 15:12:43.222 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 15:12:43.519 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 15:17:42.084 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2020-08-14 15:17:43.550 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 15:17:43.860 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 15:20:12.117 [main] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 15:20:12.549 [main] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 15:20:12.551 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: [BootstrapPropertySource {name='bootstrapProperties-classpath:/shared/share-mainctl.yml'}, BootstrapPropertySource {name='bootstrapProperties-classpath:/shared/application.yml'}]
+2020-08-14 15:20:12.570 [main] INFO  com.aether.sharemainctlservice.MainctlApplication - No active profile set, falling back to default profiles: default
+2020-08-14 15:20:13.412 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-08-14 15:20:13.414 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-08-14 15:20:13.453 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 14ms. Found 0 Redis repository interfaces.
+2020-08-14 15:20:13.728 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=8148f612-49be-35a8-af65-4bc17ebb8aef
+2020-08-14 15:20:14.041 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8085 (http)
+2020-08-14 15:20:14.048 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+2020-08-14 15:20:14.049 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-08-14 15:20:14.049 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.37]
+2020-08-14 15:20:14.171 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-08-14 15:20:14.171 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1585 ms
+2020-08-14 15:20:14.247 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-08-14 15:20:14.257 [main] INFO  com.netflix.config.DynamicPropertyFactory - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@22aee519
+2020-08-14 15:20:15.336 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-08-14 15:20:15.400 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-08-14 15:20:15.416 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-08-14 15:20:15.505 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-08-14 15:20:16.246 [main] INFO  o.s.cloud.netflix.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2020-08-14 15:20:16.277 [main] INFO  com.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2020-08-14 15:20:16.576 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using JSON encoding codec LegacyJacksonJson
+2020-08-14 15:20:16.576 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using JSON decoding codec LegacyJacksonJson
+2020-08-14 15:20:16.672 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using XML encoding codec XStreamXml
+2020-08-14 15:20:16.672 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using XML decoding codec XStreamXml
+2020-08-14 15:20:16.905 [main] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2020-08-14 15:20:17.049 [main] INFO  com.netflix.discovery.DiscoveryClient - Disable delta property : false
+2020-08-14 15:20:17.049 [main] INFO  com.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2020-08-14 15:20:17.049 [main] INFO  com.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2020-08-14 15:20:17.049 [main] INFO  com.netflix.discovery.DiscoveryClient - Application is null : false
+2020-08-14 15:20:17.051 [main] INFO  com.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2020-08-14 15:20:17.051 [main] INFO  com.netflix.discovery.DiscoveryClient - Application version is -1: true
+2020-08-14 15:20:17.051 [main] INFO  com.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2020-08-14 15:20:17.177 [main] INFO  com.netflix.discovery.DiscoveryClient - The response status is 200
+2020-08-14 15:20:17.180 [main] INFO  com.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2020-08-14 15:20:17.182 [main] INFO  com.netflix.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2020-08-14 15:20:17.186 [main] INFO  com.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1597389617184 with initial instances count: 2
+2020-08-14 15:20:17.187 [main] INFO  o.s.c.n.e.serviceregistry.EurekaServiceRegistry - Registering application SHARE-MAINCTL with eureka with status UP
+2020-08-14 15:20:17.188 [main] INFO  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1597389617188, current=UP, previous=STARTING]
+2020-08-14 15:20:17.189 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+2020-08-14 15:20:17.194 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 15:20:17.362 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8085 (http) with context path ''
+2020-08-14 15:20:17.363 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8085
+2020-08-14 15:20:17.677 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2020-08-14 15:20:17.690 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2020-08-14 15:20:17.696 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 15:20:17.730 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2020-08-14 15:20:17.734 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2020-08-14 15:20:17.859 [main] INFO  com.aether.sharemainctlservice.MainctlApplication - Started MainctlApplication in 7.128 seconds (JVM running for 8.139)
+2020-08-14 15:20:17.875 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_SHARE-MAINCTL/192.168.11.110:share-mainctl:8085: registering service...
+2020-08-14 15:20:17.904 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_SHARE-MAINCTL/192.168.11.110:share-mainctl:8085 - registration status: 204
+2020-08-14 15:20:18.529 [RMI TCP Connection(2)-192.168.11.110] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-08-14 15:20:18.529 [RMI TCP Connection(2)-192.168.11.110] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-08-14 15:20:18.534 [RMI TCP Connection(2)-192.168.11.110] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+2020-08-14 15:22:00.742 [main] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 15:22:01.173 [main] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 15:22:01.174 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: [BootstrapPropertySource {name='bootstrapProperties-classpath:/shared/share-mainctl.yml'}, BootstrapPropertySource {name='bootstrapProperties-classpath:/shared/application.yml'}]
+2020-08-14 15:22:01.197 [main] INFO  com.aether.sharemainctlservice.MainctlApplication - No active profile set, falling back to default profiles: default
+2020-08-14 15:22:02.061 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-08-14 15:22:02.063 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-08-14 15:22:02.105 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 14ms. Found 0 Redis repository interfaces.
+2020-08-14 15:22:02.386 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=8148f612-49be-35a8-af65-4bc17ebb8aef
+2020-08-14 15:22:02.699 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8085 (http)
+2020-08-14 15:22:02.707 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+2020-08-14 15:22:02.708 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-08-14 15:22:02.708 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.37]
+2020-08-14 15:22:02.827 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-08-14 15:22:02.828 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1613 ms
+2020-08-14 15:22:02.906 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-08-14 15:22:02.915 [main] INFO  com.netflix.config.DynamicPropertyFactory - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@16b76858
+2020-08-14 15:22:04.001 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-08-14 15:22:04.064 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-08-14 15:22:04.078 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-08-14 15:22:04.171 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-08-14 15:22:04.923 [main] INFO  o.s.cloud.netflix.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2020-08-14 15:22:04.952 [main] INFO  com.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2020-08-14 15:22:05.234 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using JSON encoding codec LegacyJacksonJson
+2020-08-14 15:22:05.234 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using JSON decoding codec LegacyJacksonJson
+2020-08-14 15:22:05.358 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using XML encoding codec XStreamXml
+2020-08-14 15:22:05.358 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using XML decoding codec XStreamXml
+2020-08-14 15:22:05.590 [main] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2020-08-14 15:22:05.739 [main] INFO  com.netflix.discovery.DiscoveryClient - Disable delta property : false
+2020-08-14 15:22:05.739 [main] INFO  com.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2020-08-14 15:22:05.739 [main] INFO  com.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2020-08-14 15:22:05.739 [main] INFO  com.netflix.discovery.DiscoveryClient - Application is null : false
+2020-08-14 15:22:05.739 [main] INFO  com.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2020-08-14 15:22:05.739 [main] INFO  com.netflix.discovery.DiscoveryClient - Application version is -1: true
+2020-08-14 15:22:05.739 [main] INFO  com.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2020-08-14 15:22:05.847 [main] INFO  com.netflix.discovery.DiscoveryClient - The response status is 200
+2020-08-14 15:22:05.849 [main] INFO  com.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2020-08-14 15:22:05.852 [main] INFO  com.netflix.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2020-08-14 15:22:05.855 [main] INFO  com.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1597389725854 with initial instances count: 1
+2020-08-14 15:22:05.857 [main] INFO  o.s.c.n.e.serviceregistry.EurekaServiceRegistry - Registering application SHARE-MAINCTL with eureka with status UP
+2020-08-14 15:22:05.858 [main] INFO  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1597389725858, current=UP, previous=STARTING]
+2020-08-14 15:22:05.859 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+2020-08-14 15:22:05.862 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 15:22:06.056 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8085 (http) with context path ''
+2020-08-14 15:22:06.057 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8085
+2020-08-14 15:22:06.208 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 15:22:06.243 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2020-08-14 15:22:06.358 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_SHARE-MAINCTL/192.168.11.110:share-mainctl:8085: registering service...
+2020-08-14 15:22:06.361 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2020-08-14 15:22:06.395 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2020-08-14 15:22:06.407 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_SHARE-MAINCTL/192.168.11.110:share-mainctl:8085 - registration status: 204
+2020-08-14 15:22:06.431 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2020-08-14 15:22:06.552 [main] INFO  com.aether.sharemainctlservice.MainctlApplication - Started MainctlApplication in 7.094 seconds (JVM running for 8.547)
+2020-08-14 15:22:06.784 [RMI TCP Connection(1)-192.168.11.110] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-08-14 15:22:06.785 [RMI TCP Connection(1)-192.168.11.110] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-08-14 15:22:06.792 [RMI TCP Connection(1)-192.168.11.110] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 7 ms
+2020-08-14 15:22:15.495 [http-nio-8085-exec-1] INFO  c.a.s.intercepter.DataInterceptor - request	GET /sdi/registry--------IP:0:0:0:0:0:0:0:1---------params:[ip=192.168.11.110][port=65000]
+2020-08-14 15:22:15.544 [http-nio-8085-exec-1] INFO  c.a.s.intercepter.ResponseControllerAdvice - response  GET	/sdi/registry--------IP: 192.168.11.110---------response: {"code":200,"msg":"操作成功","data":null}
+2020-08-14 15:23:51.645 [http-nio-8085-exec-3] INFO  c.a.s.intercepter.DataInterceptor - request	GET /v2/api-docs-ext--------IP:0:0:0:0:0:0:0:1---------params:[group=share-mainctl]
+2020-08-14 15:23:59.079 [http-nio-8085-exec-4] INFO  c.a.s.intercepter.DataInterceptor - request	GET /sdi/registry--------IP:0:0:0:0:0:0:0:1---------params:[ip=192.168.11.110][port=65001]
+2020-08-14 15:23:59.095 [http-nio-8085-exec-4] INFO  c.a.s.intercepter.ResponseControllerAdvice - response  GET	/sdi/registry--------IP: 192.168.11.110---------response: {"code":200,"msg":"操作成功","data":null}
+2020-08-14 15:24:11.019 [http-nio-8085-exec-6] INFO  c.a.s.intercepter.DataInterceptor - request	GET /sdi/registry--------IP:0:0:0:0:0:0:0:1---------params:[ip=192.168.11.110][port=65000]
+2020-08-14 15:24:11.021 [http-nio-8085-exec-6] INFO  c.a.s.intercepter.ResponseControllerAdvice - response  GET	/sdi/registry--------IP: 192.168.11.110---------response: {"code":200,"msg":"操作成功","data":null}
+2020-08-14 15:24:20.406 [http-nio-8085-exec-7] INFO  c.a.s.intercepter.DataInterceptor - request	GET /sdi/registry--------IP:0:0:0:0:0:0:0:1---------params:[ip=192.168.11.110][port=65000]
+2020-08-14 15:24:20.407 [http-nio-8085-exec-7] INFO  c.a.s.intercepter.ResponseControllerAdvice - response  GET	/sdi/registry--------IP: 192.168.11.110---------response: {"code":200,"msg":"操作成功","data":null}
+2020-08-14 15:27:05.743 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2020-08-14 15:27:06.439 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 15:27:06.772 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 15:32:05.745 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2020-08-14 15:32:06.815 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 15:32:08.170 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null
+2020-08-14 15:37:05.747 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2020-08-14 15:37:08.213 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8081
+2020-08-14 15:37:09.558 [DiscoveryClient-InstanceInfoReplicator-0] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Located environment: name=share-mainctl, profiles=[default], label=null, version=null, state=null

@@ -78,3 +78,8 @@ redis:
   testOnBorrow: true
   #在空闲时检查有效性, 默认false
   testWhileIdle: true
+
+sdi:
+#  SDI注册后保存的位置
+  redis: #在热点中的位置
+    reg: SDI_CENTER

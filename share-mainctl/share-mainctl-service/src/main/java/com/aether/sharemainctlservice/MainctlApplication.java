@@ -1,9 +1,8 @@
 package com.aether.sharemainctlservice;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
-import org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
@@ -13,6 +12,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 //@SpringBootApplication(exclude = {RedisAutoConfiguration.class, RedisRepositoriesAutoConfiguration.class})
 @SpringBootApplication
 @EnableEurekaClient
+@MapperScan(basePackages = {"com.aether.sharemainctlservice.dao"})
 public class MainctlApplication {
     public static void main(String[] args) {
 
