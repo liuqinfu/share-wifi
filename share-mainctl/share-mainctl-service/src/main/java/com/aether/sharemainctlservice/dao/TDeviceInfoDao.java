@@ -19,6 +19,13 @@ public interface TDeviceInfoDao {
      * @return 实例对象
      */
     TDeviceInfo queryById(String deviceId);
+    /**
+     * 通过ID集合查询数据
+     *
+     * @param ids 主键集合
+     * @return 实例对象
+     */
+    List<TDeviceInfo> queryByIds(List ids);
 
     /**
      * 查询指定行数据

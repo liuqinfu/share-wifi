@@ -6,15 +6,13 @@ import com.aether.sharemainctlservice.dao.TDeviceInfoDao;
 import com.aether.sharemainctlservice.entity.TGpsHis;
 import com.aether.sharemainctlservice.service.TDeviceInfoService;
 import com.alibaba.fastjson.JSONObject;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 终端设备信息(TDeviceInfo)表服务实现类
@@ -37,6 +35,12 @@ public class TDeviceInfoServiceImpl implements TDeviceInfoService {
     private String sdi_reg;
 
     /**
+     * STA终端信息
+     */
+    @Value("${redis.keys.online.device}")
+    private String onlineDeviceTokens;
+
+    /**
      * 通过ID查询单条数据
      *
      * @param deviceId 主键
@@ -45,6 +49,18 @@ public class TDeviceInfoServiceImpl implements TDeviceInfoService {
     @Override
     public TDeviceInfo queryById(String deviceId) {
         return this.tDeviceInfoDao.queryById(deviceId);
+    }
+
+    /**
+     * 查询所有设备在线离线状态
+     * @return
+     */
+    @Override
+    public List<TDeviceInfo> queryDevicesOnlinesOr() {
+        Set<Object> setTokens =redisUtil.sGet(onlineDeviceTokens);
+        List<Object> tokens = setTokens.stream().collect(Collectors.toList());
+        List<TDeviceInfo> tDeviceInfos = this.tDeviceInfoDao.queryByIds(tokens);
+        return tDeviceInfos;
     }
 
     /**

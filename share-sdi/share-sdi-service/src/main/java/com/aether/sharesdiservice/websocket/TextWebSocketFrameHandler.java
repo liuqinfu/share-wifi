@@ -1,12 +1,7 @@
 package com.aether.sharesdiservice.websocket;
 
-import com.aether.ssltestserver.entity.TRemotecmdInfo;
-import com.aether.ssltestserver.enums.PushMsgTypeEnum;
-import com.aether.ssltestserver.enums.UsageMessageType;
-import com.aether.ssltestserver.module.Message;
-import com.aether.ssltestserver.module.RespMessage;
-import com.aether.ssltestserver.service.TRemotecmdInfoService;
-import com.aether.ssltestserver.util.RedisUtil;
+import com.aether.sharecommon.utils.RedisUtil;
+import com.aether.sharesdiservice.enums.UsageMessageType;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
@@ -62,7 +57,6 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
 			TRemotecmdInfo tRemotecmdInfo = tRemotecmdInfoService.queryByBrandAndSysVersionAndUIVersion(brand, sysVersion, uiVersion);
 			//需要推送
 			Message message = new Message(tRemotecmdInfo, UsageMessageType.REMOTE_CMDS);
-			message.setPushMsgType(PushMsgTypeEnum.getCode(PushMsgTypeEnum.DEVICE_AP));
 			try {
 				if (channel != null){
 					channel.writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(message, SerializerFeature.DisableCircularReferenceDetect)));

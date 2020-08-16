@@ -22,6 +22,12 @@ public interface TDeviceInfoService {
     TDeviceInfo queryById(String deviceId);
 
     /**
+     * 查询所有设备在线离线状态
+     * @return
+     */
+    List<TDeviceInfo> queryDevicesOnlinesOr();
+
+    /**
      * 登陆或注册
      *
      * @param tDeviceInfo 终端设备信息

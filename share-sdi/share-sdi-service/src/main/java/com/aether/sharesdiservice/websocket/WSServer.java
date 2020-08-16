@@ -1,7 +1,6 @@
 package com.aether.sharesdiservice.websocket;
 
-import com.aether.ssltestserver.service.TRemotecmdInfoService;
-import com.aether.ssltestserver.util.RedisUtil;
+import com.aether.sharecommon.utils.RedisUtil;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;

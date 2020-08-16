@@ -7,10 +7,12 @@ import com.aether.sharemainctlservice.entity.TGpsHis;
 import com.aether.sharemainctlservice.entity.TWifiInfo;
 import com.aether.sharemainctlservice.service.TDeviceInfoService;
 import io.swagger.annotations.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * 终端设备信息(TDeviceInfo)表控制层
@@ -39,13 +41,27 @@ public class TDeviceInfoController {
      *
      * @return 单条数据
      */
-    @ApiOperation(value = "为SDI提供注册服务", notes = "sdi向主控注册服务",response = ResultVO.class)
+    @ApiOperation(value = "登陆或注册设备", notes = "终端设备箱sdi注册",response = ResultVO.class)
     @GetMapping("reg||login")
     public ResultVO<TWifiInfo> regOrLogin(@RequestBody @Valid TDeviceInfo deviceInfo,
                                           @RequestBody @Valid TGpsHis tGpsHis) {
         TDeviceInfo tDeviceInfo = tDeviceInfoService.regLogin(deviceInfo,tGpsHis);
         return new ResultVO(tDeviceInfo);
     }
+
+    /**
+     * 查询终端是否在线
+     *
+     * @return 终端数据
+     */
+    @ApiOperation(value = "查询终端是否在线", notes = "查询终端是否在线",response = ResultVO.class)
+    @GetMapping("query/status")
+    public ResultVO<TDeviceInfo> queryDevice() {
+        List<TDeviceInfo> tDeviceInfos = tDeviceInfoService.queryDevicesOnlinesOr();
+        return new ResultVO(tDeviceInfos);
+    }
+
+
 
 
 

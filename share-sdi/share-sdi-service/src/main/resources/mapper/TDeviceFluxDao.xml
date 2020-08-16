@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aether.sharesdiservice.dao.TDeviceFluxDao">
+
+    <resultMap type="com.aether.sharesdiservice.entity.TDeviceFlux" id="TDeviceFluxMap">
+        <result property="deviceId" column="device_id" jdbcType="VARCHAR"/>
+        <result property="bssid" column="bssid" jdbcType="VARCHAR"/>
+        <result property="ssid" column="ssid" jdbcType="VARCHAR"/>
+        <result property="flux" column="flux" jdbcType="OTHER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--按条件统计流量-->
+    <select id="countByParam" resultType="java.util.Map">
+        select
+        <if test="device != null">
+            device_id,
+        </if>
+        sum(flux),
+        <choose>
+            <when test="unit == year">
+                DATE_FORMAT(create_time,'%Y') as unit
+            </when>
+            <otherwise>
+                DATE_FORMAT(create_time,'%Y-%m') as unit
+            </otherwise>
+        </choose>
+        from share-wifi.t_device_flux
+        <if test="device != null">
+            device_id = #{deviceId}
+        </if>
+        group by unit
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="TDeviceFluxMap">
+        select
+          device_id, bssid, ssid, flux, create_time
+        from share-wifi.t_device_flux
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="TDeviceFluxMap">
+        select
+        device_id, bssid, ssid, flux, create_time
+        from share-wifi.t_device_flux
+        <where>
+            <if test="deviceId != null and deviceId != ''">
+                and device_id = #{deviceId}
+            </if>
+            <if test="bssid != null and bssid != ''">
+                and bssid = #{bssid}
+            </if>
+            <if test="ssid != null and ssid != ''">
+                and ssid = #{ssid}
+            </if>
+            <if test="flux != null">
+                and flux = #{flux}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="" useGeneratedKeys="true">
+        insert into share-wifi.t_device_flux(device_id, bssid, ssid, flux, create_time)
+        values (#{deviceId}, #{bssid}, #{ssid}, #{flux}, #{createTime})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update share-wifi.t_device_flux
+        <set>
+            <if test="deviceId != null and deviceId != ''">
+                device_id = #{deviceId},
+            </if>
+            <if test="bssid != null and bssid != ''">
+                bssid = #{bssid},
+            </if>
+            <if test="ssid != null and ssid != ''">
+                ssid = #{ssid},
+            </if>
+            <if test="flux != null">
+                flux = #{flux},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+        </set>
+        where = #{}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from share-wifi.t_device_flux where  = #{}
+    </delete>
+
+</mapper>

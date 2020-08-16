@@ -22,8 +22,6 @@ public class Message {
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
-    private String pushMsgType; // 推送消息类型【用于终端（如：App）区分消息】
-
     private String usageType = UsageMessageType.CHANGE_AP.getUsageType();
 
     public Message(Object message, UsageMessageType usageMessageType) {

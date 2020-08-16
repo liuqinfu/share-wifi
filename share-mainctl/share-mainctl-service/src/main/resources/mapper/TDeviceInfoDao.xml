@@ -18,6 +18,16 @@
         from share-wifi.t_device_info
         where device_id = #{deviceId}
     </select>
+    <select id="queryByIds" resultMap="BaseResultMap">
+        select
+          device_id, sys_v, ui_v, register_time, status
+        from share-wifi.t_device_info
+        where device_id in
+         <foreach collection="ids" item="deviceId" separator="," open="(" close=")">
+             #{deviceId}
+         </foreach>
+         #{deviceId}
+    </select>
 
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="BaseResultMap">
