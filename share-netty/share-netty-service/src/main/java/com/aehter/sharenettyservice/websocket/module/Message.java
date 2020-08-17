@@ -1,7 +1,7 @@
-package com.aether.sharesdiservice.websocket;
+package com.aehter.sharenettyservice.websocket.module;
 
+import com.aehter.sharenettyservice.enums.UsageMessageType;
 import com.aether.sharecommon.utils.StringUtil;
-import com.aether.sharesdiservice.enums.UsageMessageType;
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 
@@ -24,7 +24,7 @@ public class Message {
 
     private String usageType = UsageMessageType.CHANGE_AP.getUsageType();
 
-    public Message(Object message, UsageMessageType usageMessageType) {
+    public Message(Object message,UsageMessageType usageMessageType) {
         this.message = message;
         this.createTime = new Date();
         this.usageType = usageMessageType.getUsageType();

@@ -40,7 +40,7 @@ spring:
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 mybatis:
-  type-aliases-package: com.aether.sharemainctlservice.dao.model  # 注意：对应实体类的路径
+  type-aliases-package: com.aether.sharemainctlservice.entity  # 注意：对应实体类的路径
   configuration:
     mapUnderscoreToCamelCase: true
     callSettersOnNulls: true

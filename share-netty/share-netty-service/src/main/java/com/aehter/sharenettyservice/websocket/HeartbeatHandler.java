@@ -1,4 +1,4 @@
-package com.aether.sharesdiservice.websocket;
+package com.aehter.sharenettyservice.websocket;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

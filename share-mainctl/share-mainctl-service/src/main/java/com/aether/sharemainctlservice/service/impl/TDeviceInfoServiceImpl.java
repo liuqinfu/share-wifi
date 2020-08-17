@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 @Service("tDeviceInfoService")
 public class TDeviceInfoServiceImpl implements TDeviceInfoService {
 
-    private volatile static int count = 0;
+//    private volatile static int count = 0;
 
     @Resource
     private TDeviceInfoDao tDeviceInfoDao;
@@ -91,14 +91,40 @@ public class TDeviceInfoServiceImpl implements TDeviceInfoService {
 
 
         //获取SDI
-        long setSize = redisUtil.sGetSetSize(sdi_reg);
+        Map<Object, Object> sdi_balance_load = redisUtil.hmget("SDI_BALANCE_LOAD");
+        List<Map.Entry<String, Integer>> sdi_balances = sortASC(sdi_balance_load);
+        Map.Entry<String, Integer> sdi_loads_map = sdi_balances.stream().findFirst().get();
+        String sdi_Addr = sdi_loads_map.getKey();
+        Integer sdi_loads = sdi_loads_map.getValue();
+        SDIServiceImpl.SDIInfo sdiInfo = JSONObject.parseObject(sdi_Addr, SDIServiceImpl.SDIInfo.class);
+
+        /*long setSize = redisUtil.sGetSetSize(sdi_reg);
         Set<Object> objects = redisUtil.sGet(sdi_reg);
         Integer index = Math.toIntExact(count % setSize);
         String sdiInfoStr = (String) (objects.stream().toArray())[index];
-        SDIServiceImpl.SDIInfo sdiInfo = JSONObject.parseObject(sdiInfoStr, SDIServiceImpl.SDIInfo.class);
+        SDIServiceImpl.SDIInfo sdiInfo = JSONObject.parseObject(sdiInfoStr, SDIServiceImpl.SDIInfo.class);*/
         tDeviceInfo.setSdiInfo(sdiInfo.toString());
         return tDeviceInfo;
 
+    }
+
+    /**
+     * 对SDIBALANCER进行排序，升序
+     * @param source
+     * @return
+     */
+    public List<Map.Entry<String,Integer>> sortASC(Map source){
+        List<Map.Entry<String,Integer>> list = new ArrayList<Map.Entry<String,Integer>>(source.entrySet());
+        Collections.sort(list,new Comparator<Map.Entry<String,Integer>>() {
+            //升序排序
+            @Override
+            public int compare(Map.Entry<String, Integer> o1,
+                               Map.Entry<String, Integer> o2) {
+                return o1.getValue().compareTo(o2.getValue());
+            }
+
+        });
+        return list;
     }
 
     /**

@@ -19,16 +19,6 @@ public class TGpsHisServiceImpl implements TGpsHisService {
     @Resource
     private TGpsHisDao tGpsHisDao;
 
-    /**
-     * 通过ID查询单条数据
-     *
-     * @param  主键
-     * @return 实例对象
-     */
-    @Override
-    public TGpsHis queryById( ) {
-        return this.tGpsHisDao.queryById();
-    }
 
     /**
      * 查询多条数据
@@ -62,18 +52,7 @@ public class TGpsHisServiceImpl implements TGpsHisService {
      */
     @Override
     public TGpsHis update(TGpsHis tGpsHis) {
-        this.tGpsHisDao.update(tGpsHis);
-        return this.queryById(tGpsHis.get());
+        return null;
     }
 
-    /**
-     * 通过主键删除数据
-     *
-     * @param  主键
-     * @return 是否成功
-     */
-    @Override
-    public boolean deleteById( ) {
-        return this.tGpsHisDao.deleteById() > 0;
-    }
 }

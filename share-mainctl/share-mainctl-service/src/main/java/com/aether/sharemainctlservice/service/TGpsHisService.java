@@ -11,13 +11,6 @@ import java.util.List;
  */
 public interface TGpsHisService {
 
-    /**
-     * 通过ID查询单条数据
-     *
-     * @param  主键
-     * @return 实例对象
-     */
-    TGpsHis queryById( );
 
     /**
      * 查询多条数据
@@ -44,12 +37,5 @@ public interface TGpsHisService {
      */
     TGpsHis update(TGpsHis tGpsHis);
 
-    /**
-     * 通过主键删除数据
-     *
-     * @param  主键
-     * @return 是否成功
-     */
-    boolean deleteById( );
 
 }

@@ -13,14 +13,6 @@ import java.util.List;
 public interface TGpsHisDao {
 
     /**
-     * 通过ID查询单条数据
-     *
-     * @param  主键
-     * @return 实例对象
-     */
-    TGpsHis queryById( );
-
-    /**
      * 查询指定行数据
      *
      * @param offset 查询起始位置
@@ -54,12 +46,5 @@ public interface TGpsHisDao {
      */
     int update(TGpsHis tGpsHis);
 
-    /**
-     * 通过主键删除数据
-     *
-     * @param  主键
-     * @return 影响行数
-     */
-    int deleteById( );
 
 }

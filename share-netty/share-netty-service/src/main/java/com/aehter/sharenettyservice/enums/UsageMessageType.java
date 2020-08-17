@@ -1,4 +1,4 @@
-package com.aether.sharesdiservice.enums;
+package com.aehter.sharenettyservice.enums;
 
 public enum UsageMessageType {
 

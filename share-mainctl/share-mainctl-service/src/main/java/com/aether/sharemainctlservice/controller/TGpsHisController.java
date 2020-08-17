@@ -21,15 +21,5 @@ public class TGpsHisController {
     @Resource
     private TGpsHisService tGpsHisService;
 
-    /**
-     * 通过主键查询单条数据
-     *
-     * @param id 主键
-     * @return 单条数据
-     */
-    @GetMapping("selectOne")
-    public TGpsHis selectOne( id) {
-        return this.tGpsHisService.queryById(id);
-    }
 
 }

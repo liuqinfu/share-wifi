@@ -1,4 +1,4 @@
-package com.aether.sharesdiservice.websocket;
+package com.aehter.sharenettyservice.websocket;
 
 import com.aether.sharecommon.utils.RedisUtil;
 import io.netty.bootstrap.ServerBootstrap;
@@ -25,8 +25,6 @@ public class WSServer {
 
 	@Autowired
 	private RedisUtil redisUtil;
-	@Autowired
-	private TRemotecmdInfoService tRemotecmdInfoService;
 
 	/**
 	 * 本服务ip
@@ -51,7 +49,7 @@ public class WSServer {
 		ServerBootstrap bootstrap = new ServerBootstrap();
 		bootstrap.group(bossGroup, workGroup)
 				.channel(NioServerSocketChannel.class)
-				.childHandler(new WSServerInitializer(channelGroup,sslContext,redisUtil,tRemotecmdInfoService,sdi_host,STAInfo_redisKey))
+				.childHandler(new WSServerInitializer(channelGroup,sslContext,redisUtil,sdi_host,STAInfo_redisKey))
 				.option(ChannelOption.SO_BACKLOG, 128)
 				.childOption(ChannelOption.SO_KEEPALIVE, true);
 
@@ -69,19 +67,4 @@ public class WSServer {
 		workGroup.shutdownGracefully();
 		bossGroup.shutdownGracefully();
 	}
-	
-	/*public static void main(String[] args) {
-		ChatServer server = new ChatServer();
-		InetSocketAddress address = new InetSocketAddress("127.0.0.1", 9090);
-		ChannelFuture future = server.start(address);
-		
-		Runtime.getRuntime().addShutdownHook(new Thread(){
-			@Override
-			public void run() {
-				server.destroy();
-			}
-		});
-		
-		future.channel().closeFuture().syncUninterruptibly();
-	}*/
 }

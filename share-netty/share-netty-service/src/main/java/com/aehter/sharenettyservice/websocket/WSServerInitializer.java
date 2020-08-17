@@ -1,4 +1,4 @@
-package com.aether.sharesdiservice.websocket;
+package com.aehter.sharenettyservice.websocket;
 
 import com.aether.sharecommon.utils.RedisUtil;
 import io.netty.channel.Channel;
@@ -20,18 +20,16 @@ public class WSServerInitializer extends ChannelInitializer<Channel> {
     private final ChannelGroup group;
     private final SslContext sslContext;
 
-    private TRemotecmdInfoService tRemotecmdInfoService;
     private RedisUtil redisUtil;
     private String sdi_host;
     private String STAInfo_redisKey;
 
-    public WSServerInitializer(ChannelGroup group, SslContext sslContext, RedisUtil redisUtil, TRemotecmdInfoService tRemotecmdInfoService, String sdi_host, String STAInfo_redisKey) {
+    public WSServerInitializer(ChannelGroup group, SslContext sslContext, RedisUtil redisUtil, String sdi_host, String STAInfo_redisKey) {
         this.group = group;
         this.sslContext = sslContext;
         this.redisUtil = redisUtil;
         this.sdi_host = sdi_host;
         this.STAInfo_redisKey = STAInfo_redisKey;
-        this.tRemotecmdInfoService = tRemotecmdInfoService;
     }
 
     @Override
@@ -53,6 +51,6 @@ public class WSServerInitializer extends ChannelInitializer<Channel> {
         pipeline.addLast(new HttpObjectAggregator(64 * 1024));
         pipeline.addLast(new HttpRequestHandler("/ws", redisUtil, sdi_host,STAInfo_redisKey));
         pipeline.addLast(new WebSocketServerProtocolHandler("/ws"));
-        pipeline.addLast(new TextWebSocketFrameHandler(group, redisUtil,tRemotecmdInfoService, sdi_host,STAInfo_redisKey));
+        pipeline.addLast(new TextWebSocketFrameHandler(group, redisUtil, sdi_host,STAInfo_redisKey));
     }
 }

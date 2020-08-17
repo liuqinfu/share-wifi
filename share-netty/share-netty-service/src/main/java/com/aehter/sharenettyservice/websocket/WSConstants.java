@@ -1,4 +1,4 @@
-package com.aether.sharesdiservice.websocket;
+package com.aehter.sharenettyservice.websocket;
 
 import com.aether.sharecommon.utils.RedisUtil;
 import io.netty.channel.Channel;

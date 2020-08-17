@@ -46,6 +46,7 @@ public class SDIServiceImpl implements SDIService {
     }
 
     @Data
+    static
     class SDIInfo{
         private String ip;
         private String port;

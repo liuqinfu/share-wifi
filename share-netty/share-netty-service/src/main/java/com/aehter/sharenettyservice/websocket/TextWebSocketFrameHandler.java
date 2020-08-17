@@ -1,7 +1,8 @@
-package com.aether.sharesdiservice.websocket;
+package com.aehter.sharenettyservice.websocket;
 
+import com.aehter.sharenettyservice.enums.UsageMessageType;
+import com.aehter.sharenettyservice.websocket.module.RespMessage;
 import com.aether.sharecommon.utils.RedisUtil;
-import com.aether.sharesdiservice.enums.UsageMessageType;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
@@ -24,17 +25,15 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
 	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	private ChannelGroup group;
-	private TRemotecmdInfoService tRemotecmdInfoService;
 	private RedisUtil redisUtil;
 	private String sdi_host;
 	private String STAInfo_redisKey;
 	
-	public TextWebSocketFrameHandler(ChannelGroup group, RedisUtil redisUtil,TRemotecmdInfoService tRemotecmdInfoService,String sdi_host,String STAInfo_redisKey) {
+	public TextWebSocketFrameHandler(ChannelGroup group, RedisUtil redisUtil,String sdi_host,String STAInfo_redisKey) {
 		this.group = group;
 		this.redisUtil = redisUtil;
 		this.sdi_host = sdi_host;
 		this.STAInfo_redisKey = STAInfo_redisKey;
-		this.tRemotecmdInfoService = tRemotecmdInfoService;
 	}
 	
 	@Override
@@ -51,23 +50,6 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
 			//存入redis 以set结构
 			redisUtil.hset(sdi_host, token, sdf.format(new Date()));
 			loger.info("终端：{} 上线。。channelId:{}",token,channel.id().asLongText());
-			//发送该终端对应的远程指令集
-			String brand = null,sysVersion = null,uiVersion = null;
-			//搜索对应远程指令集
-			TRemotecmdInfo tRemotecmdInfo = tRemotecmdInfoService.queryByBrandAndSysVersionAndUIVersion(brand, sysVersion, uiVersion);
-			//需要推送
-			Message message = new Message(tRemotecmdInfo, UsageMessageType.REMOTE_CMDS);
-			try {
-				if (channel != null){
-					channel.writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(message, SerializerFeature.DisableCircularReferenceDetect)));
-					WSConstants.sentMsgs.putIfAbsent(message.getMsgId(),message);
-					loger.info("远程指令集下发成功}{}--->{}",token,message);
-				}else {
-					loger.error("远程指令集下发失败 未找到终端:{}",sdi_host,token);
-				}
-			} catch (Exception ex) {
-				loger.error("远程指令集下发失败：Target{};message:{};detail:{}", token, tRemotecmdInfo, ex.getMessage());
-			}
 		}else {
 			super.userEventTriggered(ctx, evt);
 		}

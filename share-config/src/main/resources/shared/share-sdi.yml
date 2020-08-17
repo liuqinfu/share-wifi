@@ -9,6 +9,49 @@ logging:
       mybatis: debug
 swagger:
   base-package: com.aether.sharesdiservice.controller
+
+zookeeper:
+  address: 127.0.0.1:2181
+  timeout: 6000
+
+spring:
+  #设置文件上传大小限制
+  servlet:
+    multipart:
+      max-file-size: 52428800 #单个文件大小限制
+      max-request-size: 104857600 #单次请求文件大小限制
+  datasource:
+    #   数据源基本配置
+    username: root
+    password:
+    url: jdbc:mysql://127.0.0.1:3306/share-wifi?serverTimezone=Asia/Shanghai&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    #   数据源其他配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+mybatis:
+  type-aliases-package: com.aether.sharesdiservice.entity  # 注意：对应实体类的路径
+  configuration:
+    mapUnderscoreToCamelCase: true
+    callSettersOnNulls: true
+    logImpl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mapping/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
+
 #Matser的ip地址
 redis:
   hostName: 127.0.0.1
