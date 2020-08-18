@@ -1,6 +1,7 @@
 package com.aether.sharemainctlservice.service.impl;
 
 import com.aether.sharecommon.utils.RedisUtil;
+import com.aether.sharemainctlservice.dao.TGpsHisDao;
 import com.aether.sharemainctlservice.entity.TDeviceInfo;
 import com.aether.sharemainctlservice.dao.TDeviceInfoDao;
 import com.aether.sharemainctlservice.entity.TGpsHis;
@@ -27,6 +28,9 @@ public class TDeviceInfoServiceImpl implements TDeviceInfoService {
 
     @Resource
     private TDeviceInfoDao tDeviceInfoDao;
+
+    @Resource
+    private TGpsHisDao tGpsHisDao;
 
     @Autowired
     private RedisUtil redisUtil;
@@ -81,6 +85,7 @@ public class TDeviceInfoServiceImpl implements TDeviceInfoService {
             tDeviceInfo.setRegisterTime(tDeviceInfo1.getRegisterTime());
             tDeviceInfo.setStatus(tDeviceInfo1.getStatus());
             tDeviceInfoDao.update(tDeviceInfo1);
+            tGpsHisDao.insert(tGpsHis);
         } else {
             //注册
             tDeviceInfo.setRegisterTime(new Date());
@@ -91,19 +96,12 @@ public class TDeviceInfoServiceImpl implements TDeviceInfoService {
 
 
         //获取SDI
-        Map<Object, Object> sdi_balance_load = redisUtil.hmget("SDI_BALANCE_LOAD");
+        Map<Object, Object> sdi_balance_load = redisUtil.hmget("MAIN_CTL");
         List<Map.Entry<String, Integer>> sdi_balances = sortASC(sdi_balance_load);
         Map.Entry<String, Integer> sdi_loads_map = sdi_balances.stream().findFirst().get();
-        String sdi_Addr = sdi_loads_map.getKey();
+        String sdi_Addr = sdi_loads_map.getKey(); //ip:port
         Integer sdi_loads = sdi_loads_map.getValue();
-        SDIServiceImpl.SDIInfo sdiInfo = JSONObject.parseObject(sdi_Addr, SDIServiceImpl.SDIInfo.class);
-
-        /*long setSize = redisUtil.sGetSetSize(sdi_reg);
-        Set<Object> objects = redisUtil.sGet(sdi_reg);
-        Integer index = Math.toIntExact(count % setSize);
-        String sdiInfoStr = (String) (objects.stream().toArray())[index];
-        SDIServiceImpl.SDIInfo sdiInfo = JSONObject.parseObject(sdiInfoStr, SDIServiceImpl.SDIInfo.class);*/
-        tDeviceInfo.setSdiInfo(sdiInfo.toString());
+        tDeviceInfo.setSdiInfo(sdi_Addr);
         return tDeviceInfo;
 
     }

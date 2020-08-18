@@ -1,11 +1,14 @@
 package com.aether.sharemainctlservice.service.impl;
 
+import com.aether.sharemainctlservice.dao.TGpsHisDao;
+import com.aether.sharemainctlservice.entity.TGpsHis;
 import com.aether.sharemainctlservice.entity.TWifiInfo;
 import com.aether.sharemainctlservice.dao.TWifiInfoDao;
 import com.aether.sharemainctlservice.service.TWifiInfoService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,6 +21,9 @@ import java.util.List;
 public class TWifiInfoServiceImpl implements TWifiInfoService {
     @Resource
     private TWifiInfoDao tWifiInfoDao;
+
+    @Resource
+    private TGpsHisDao tGpsHisDao;
 
     /**
      * 通过ID查询单条数据
@@ -52,6 +58,20 @@ public class TWifiInfoServiceImpl implements TWifiInfoService {
     public TWifiInfo insert(TWifiInfo tWifiInfo) {
         this.tWifiInfoDao.insert(tWifiInfo);
         return tWifiInfo;
+    }
+
+    @Override
+    public TWifiInfo save(TWifiInfo tWifiInfo, TGpsHis tGpsHis) {
+        tWifiInfo.setUpdateTime(new Date());
+        TWifiInfo tWifiInfo1 = tWifiInfoDao.queryById(tWifiInfo.getDeviceId());
+        if (tWifiInfo1 != null ){
+            tWifiInfo.setCreateTime(tWifiInfo1.getCreateTime());
+        }else{
+            tWifiInfo.setCreateTime(new Date());
+        }
+        tWifiInfoDao.insert(tWifiInfo);
+        tGpsHisDao.insert(tGpsHis);
+        return null;
     }
 
     /**

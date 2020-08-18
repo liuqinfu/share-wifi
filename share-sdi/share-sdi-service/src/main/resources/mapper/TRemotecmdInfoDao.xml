@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aether.sharesdiservice.dao.TRemotecmdInfoDao">
+
+    <resultMap id="BaseResultMap" type="com.aether.sharesdiservice.entity.TRemotecmdInfo">
+        <!--@Table t_remotecmd_info-->
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="deviceBand" column="device_band" jdbcType="VARCHAR"/>
+        <result property="sysVersion" column="sys_version" jdbcType="VARCHAR"/>
+        <result property="uiVersion" column="ui_version" jdbcType="VARCHAR"/>
+        <result property="remoteCmds" column="remote_cmds" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          id, device_band, sys_version, ui_version, remote_cmds
+        from share-wifi.t_remotecmd_info
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          id, device_band, sys_version, ui_version, remote_cmds
+        from share-wifi.t_remotecmd_info
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          id, device_band, sys_version, ui_version, remote_cmds
+        from share-wifi.t_remotecmd_info
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="deviceBand != null and deviceBand != ''">
+                and device_band = #{deviceBand}
+            </if>
+            <if test="sysVersion != null and sysVersion != ''">
+                and sys_version = #{sysVersion}
+            </if>
+            <if test="uiVersion != null and uiVersion != ''">
+                and ui_version = #{uiVersion}
+            </if>
+            <if test="remoteCmds != null and remoteCmds != ''">
+                and remote_cmds = #{remoteCmds}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into share-wifi.t_remotecmd_info(device_band, sys_version, ui_version, remote_cmds)
+        values (#{deviceBand}, #{sysVersion}, #{uiVersion}, #{remoteCmds})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update share-wifi.t_remotecmd_info
+        <set>
+            <if test="deviceBand != null and deviceBand != ''">
+                device_band = #{deviceBand},
+            </if>
+            <if test="sysVersion != null and sysVersion != ''">
+                sys_version = #{sysVersion},
+            </if>
+            <if test="uiVersion != null and uiVersion != ''">
+                ui_version = #{uiVersion},
+            </if>
+            <if test="remoteCmds != null and remoteCmds != ''">
+                remote_cmds = #{remoteCmds},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from share-wifi.t_remotecmd_info where id = #{id}
+    </delete>
+
+</mapper>

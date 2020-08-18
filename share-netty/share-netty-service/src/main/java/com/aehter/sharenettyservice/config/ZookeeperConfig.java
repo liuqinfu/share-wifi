@@ -24,6 +24,12 @@ public class ZookeeperConfig {
     @Value("${zookeeper.timeout}")
     private  int timeout;
 
+    @Value("${sdi.server.host}")
+    private String sdi_ip;
+
+    @Value("${sdi.server.port}")
+    private int sdi_port;
+
 
     @Bean(name = "zkClient")
     public ZooKeeper zkClient(){
@@ -43,6 +49,8 @@ public class ZookeeperConfig {
             });
             countDownLatch.await();
             log.info("【初始化ZooKeeper连接状态....】={}",zooKeeper.getState());
+
+
 
         }catch (Exception e){
             log.error("初始化ZooKeeper连接异常....】={}",e);

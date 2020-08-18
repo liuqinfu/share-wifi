@@ -1,6 +1,7 @@
 package com.aether.sharemainctlservice.entity;
 
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiParam;
 
 import java.util.Date;
 import java.io.Serializable;
@@ -16,6 +17,7 @@ public class TWifiInfo implements Serializable {
     /**
     * 设备行记录id
     */
+    @ApiParam(name = "设备唯一标识",required = true)
     private String deviceId;
     /**
     * 热点唯一标识
@@ -25,16 +27,19 @@ public class TWifiInfo implements Serializable {
     /**
     * 热点名称
     */
+    @ApiParam(name = "热点名称唯一标识",required = true)
     @ApiModelProperty(name = "热点唯名称",required = true)
     private String ssid;
     /**
     * 热点加密方式
     */
+    @ApiParam(name = "热点加密方式",required = true)
     @ApiModelProperty(name = "热点加密方式",required = true)
     private String encryType;
     /**
     * 热点密码
     */
+    @ApiParam(name = "热点密码",required = true)
     @ApiModelProperty(name = "热点密码",required = true)
     private String pwd;
     /**

@@ -1,13 +1,13 @@
 package com.aehter.sharenettyservice;
 
+import com.aehter.sharenettyservice.websocket.WSConstants;
 import com.aehter.sharenettyservice.websocket.WSServer;
 import com.aether.sharecommon.utils.HttpUtil;
+import com.aether.sharecommon.utils.RedisUtil;
 import com.alibaba.fastjson.JSONObject;
 import io.netty.channel.ChannelFuture;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.zookeeper.CreateMode;
-import org.apache.zookeeper.ZooDefs;
-import org.apache.zookeeper.ZooKeeper;
+import org.apache.zookeeper.*;
 import org.apache.zookeeper.data.Stat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +20,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -56,17 +57,35 @@ public class NettyApplication implements CommandLineRunner {
 
 
     @PostConstruct
-    public void PostConstruct(){
+    public void PostConstruct() throws Exception {
         //注册netty服务
         JSONObject jsonObject = new JSONObject(true);
         jsonObject.put("ip",socket_host);
         jsonObject.put("port",socket_port);
         String service_url = socket_host+":"+socket_port;
-        boolean regResult = createTmpNode("/192.168.11.110/"+service_url, jsonObject.toJSONString());
-        if (!regResult){
-            //netty注册失败，停止服务
-            exitApplication(ctx);
-        }
+        regNetty(service_url,0);
+        zkClient.addWatch("/LB/192.168.11.110", new Watcher() {
+            @Override
+            public void process(WatchedEvent watchedEvent) {
+                // 获取事件状态
+                Watcher.Event.KeeperState keeperState = watchedEvent.getState();
+                // 获取事件类型
+                Watcher.Event.EventType eventType = watchedEvent.getType();
+                // zk 路径
+                String path = watchedEvent.getPath();
+                log.info("进入到 process() keeperState:" + keeperState + ", eventType:" + eventType + ", path:" + path);
+                // 判断是否建立连接
+                if (Watcher.Event.KeeperState.SyncConnected == keeperState) {
+                    if (Watcher.Event.EventType.NodeCreated == eventType) {
+                        log.info("事件通知,新增node节点" + path);
+                        //SDIbalancer服务重新上线后，重新注册netty，并更新负载
+                        int load = WSConstants.onlineChannels.size();
+                        regNetty(service_url,load);
+                    }
+                }
+                log.info("--------------------------------------------------------");
+            }
+        }, AddWatchMode.PERSISTENT);
 
 
     }
@@ -78,11 +97,24 @@ public class NettyApplication implements CommandLineRunner {
             @Override
             public void run() {
                 WSServer.destroy();
-                //注销netty
+                future.channel().closeFuture().syncUninterruptibly();
             }
         });
-        future.channel().closeFuture().syncUninterruptibly();
 
+    }
+
+    /**
+     * 将netty服务注册到SDIloadbalancer中
+     * @param service_url
+     * @return
+     */
+    public boolean regNetty(String service_url,int loads){
+        boolean regResult = createTmpNode("/LB/192.168.11.110/"+service_url, String.valueOf(loads));
+        if (!regResult){
+            //netty注册失败，停止服务
+            exitApplication(ctx);
+        }
+        return true;
     }
 
     /**
@@ -113,4 +145,6 @@ public class NettyApplication implements CommandLineRunner {
         int exitCode = SpringApplication.exit(context, (ExitCodeGenerator) () -> 0);
         System.exit(exitCode);
     }
+
+
 }

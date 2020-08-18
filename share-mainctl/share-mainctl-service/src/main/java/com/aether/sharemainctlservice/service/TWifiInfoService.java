@@ -1,5 +1,6 @@
 package com.aether.sharemainctlservice.service;
 
+import com.aether.sharemainctlservice.entity.TGpsHis;
 import com.aether.sharemainctlservice.entity.TWifiInfo;
 import java.util.List;
 
@@ -35,6 +36,14 @@ public interface TWifiInfoService {
      * @return 实例对象
      */
     TWifiInfo insert(TWifiInfo tWifiInfo);
+
+    /**
+     * 上报热点数据
+     * @param tWifiInfo
+     * @param tGpsHis
+     * @return
+     */
+    TWifiInfo save(TWifiInfo tWifiInfo, TGpsHis tGpsHis);
 
     /**
      * 修改数据
