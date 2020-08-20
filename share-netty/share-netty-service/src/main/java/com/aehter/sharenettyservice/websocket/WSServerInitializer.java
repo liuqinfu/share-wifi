@@ -1,5 +1,8 @@
 package com.aehter.sharenettyservice.websocket;
 
+import com.aehter.sharenettyservice.service.TDeviceFluxService;
+import com.aehter.sharenettyservice.service.TGpsHisService;
+import com.aehter.sharenettyservice.service.TRemotecmdInfoService;
 import com.aether.sharecommon.utils.RedisUtil;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
@@ -13,6 +16,7 @@ import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.stream.ChunkedWriteHandler;
 import io.netty.handler.timeout.IdleStateHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.concurrent.TimeUnit;
 
@@ -21,14 +25,37 @@ public class WSServerInitializer extends ChannelInitializer<Channel> {
     private final SslContext sslContext;
 
     private RedisUtil redisUtil;
+    private TRemotecmdInfoService tRemotecmdInfoService;
+    private TDeviceFluxService tDeviceFluxService;
+    private TGpsHisService tGpsHisService;
+
     private String sdi_host;
+    private String netty_web_host;
+    private String netty_socket_host;
+    private String netty_redisKey;
     private String STAInfo_redisKey;
 
-    public WSServerInitializer(ChannelGroup group, SslContext sslContext, RedisUtil redisUtil, String sdi_host, String STAInfo_redisKey) {
+    public WSServerInitializer(ChannelGroup group,
+                               SslContext sslContext,
+                               RedisUtil redisUtil,
+                               TRemotecmdInfoService tRemotecmdInfoService,
+                               TDeviceFluxService tDeviceFluxService,
+                               TGpsHisService tGpsHisService,
+                               String sdi_host,
+                               String netty_web_host,
+                               String netty_socket_host,
+                               String netty_redisKey,
+                               String STAInfo_redisKey) {
         this.group = group;
         this.sslContext = sslContext;
         this.redisUtil = redisUtil;
+        this.tRemotecmdInfoService = tRemotecmdInfoService;
+        this.tDeviceFluxService = tDeviceFluxService;
+        this.tGpsHisService = tGpsHisService;
         this.sdi_host = sdi_host;
+        this.netty_web_host = netty_web_host;
+        this.netty_socket_host = netty_socket_host;
+        this.netty_redisKey = netty_redisKey;
         this.STAInfo_redisKey = STAInfo_redisKey;
     }
 
@@ -49,8 +76,8 @@ public class WSServerInitializer extends ChannelInitializer<Channel> {
         pipeline.addLast(new HttpServerCodec());
         pipeline.addLast(new ChunkedWriteHandler());
         pipeline.addLast(new HttpObjectAggregator(64 * 1024));
-        pipeline.addLast(new HttpRequestHandler("/ws", redisUtil, sdi_host,STAInfo_redisKey));
+        pipeline.addLast(new HttpRequestHandler("/ws", redisUtil, sdi_host,netty_web_host,netty_socket_host,netty_redisKey,STAInfo_redisKey));
         pipeline.addLast(new WebSocketServerProtocolHandler("/ws"));
-        pipeline.addLast(new TextWebSocketFrameHandler(group, redisUtil, sdi_host,STAInfo_redisKey));
+        pipeline.addLast(new TextWebSocketFrameHandler(group, redisUtil,this.tRemotecmdInfoService,tDeviceFluxService,tGpsHisService, sdi_host,netty_web_host,netty_socket_host,netty_redisKey,STAInfo_redisKey));
     }
 }

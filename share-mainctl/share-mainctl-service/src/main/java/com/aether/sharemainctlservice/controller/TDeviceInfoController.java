@@ -22,10 +22,10 @@ import java.util.List;
  */
 @Api(value = "device", tags = "终端设备管理")
 @ApiResponses({
-        @ApiResponse(code = 200, message = "操作成功", response = ResultVO.class),
-        @ApiResponse(code = 201, message = "操作失败", response = ResultVO.class),
-        @ApiResponse(code = 402, message = "输入数据检查不通过", response = ResultVO.class),
-        @ApiResponse(code = 500, message = "后台程序异常", response = ResultVO.class)
+        @ApiResponse(code = 200, message = "操作成功"),
+        @ApiResponse(code = 201, message = "操作失败"),
+        @ApiResponse(code = 402, message = "输入数据检查不通过"),
+        @ApiResponse(code = 500, message = "后台程序异常")
 })
 @RestController
 @RequestMapping("device")
@@ -41,7 +41,7 @@ public class TDeviceInfoController {
      *
      * @return 单条数据
      */
-    @ApiOperation(value = "登陆或注册设备", notes = "终端设备箱sdi注册",response = ResultVO.class)
+    @ApiOperation(value = "登陆或注册设备", notes = "终端设备箱sdi注册")
     @GetMapping("reg||login")
     public ResultVO<TWifiInfo> regOrLogin(@RequestBody @Valid TDeviceInfo deviceInfo,
                                           @RequestBody @Valid TGpsHis tGpsHis) {
@@ -54,7 +54,7 @@ public class TDeviceInfoController {
      *
      * @return 终端数据
      */
-    @ApiOperation(value = "查询终端是否在线", notes = "查询终端是否在线",response = ResultVO.class)
+    @ApiOperation(value = "查询终端是否在线", notes = "查询终端是否在线")
     @GetMapping("query/status")
     public ResultVO<TDeviceInfo> queryDevice() {
         List<TDeviceInfo> tDeviceInfos = tDeviceInfoService.queryDevicesOnlinesOr();

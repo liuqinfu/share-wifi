@@ -1,5 +1,7 @@
 package com.aether.sharemainctlservice.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiParam;
 
 import javax.validation.constraints.NotNull;
@@ -12,30 +14,31 @@ import java.io.Serializable;
  * @author 我走路带风
  * @since 2020-08-14 17:00:28
  */
+@ApiModel(description = "设备位置信息")
 public class TGpsHis implements Serializable {
     private static final long serialVersionUID = 590106256924026728L;
     /**
     * 设备唯一标识
     */
     @NotNull(message = "设备唯一标识不能为空")
-    @ApiParam(name = "设备唯一标识",required = true)
+    @ApiModelProperty(notes = "设备唯一标识",required = true)
     private String deviceId;
     /**
     * 纬度
     */
     @NotNull(message = "设备纬度不能为空")
-    @ApiParam(name = "纬度",required = true)
+    @ApiModelProperty(notes = "纬度",required = true)
     private Double latitude;
     /**
     * 经度
     */
     @NotNull(message = "设备经度不能为空")
-    @ApiParam(name = "经度",required = true)
+    @ApiModelProperty(notes = "经度",required = true)
     private Double longitude;
     /**
     * 上报时间
     */
-    @ApiParam(hidden = true)
+    @ApiModelProperty(hidden = true)
     private Date createTime = new Date();
 
 

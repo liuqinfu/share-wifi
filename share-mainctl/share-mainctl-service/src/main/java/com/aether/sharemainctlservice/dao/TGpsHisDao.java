@@ -3,6 +3,7 @@ package com.aether.sharemainctlservice.dao;
 import com.aether.sharemainctlservice.entity.TGpsHis;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 终端设备位置表(TGpsHis)表数据库访问层
@@ -45,6 +46,14 @@ public interface TGpsHisDao {
      * @return 影响行数
      */
     int update(TGpsHis tGpsHis);
+
+
+    /**
+     * 根据条件 查询 终端移动轨迹
+     * @param conditionMap
+     * @return
+     */
+    List<TGpsHis> findGpsByCondition(Map<String, Object> conditionMap);
 
 
 }

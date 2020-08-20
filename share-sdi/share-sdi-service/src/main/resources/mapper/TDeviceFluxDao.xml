@@ -90,12 +90,12 @@
                 create_time = #{createTime},
             </if>
         </set>
-        where = #{}
+        where device_id = #{deviceId}
     </update>
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from share-wifi.t_device_flux where  = #{}
+        delete from share-wifi.t_device_flux where device_id = #{deviceId}
     </delete>
 
 </mapper>

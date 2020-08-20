@@ -1,5 +1,7 @@
 package com.aether.sharecommon.finals;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 
 /**
@@ -9,23 +11,28 @@ import lombok.Getter;
  * @DESCRIPTION  统一响应格式
  **/
 @Getter
+@ApiModel(value = "服务响应")
 public class ResultVO<T> {
 
     /**
      * 业务处理是否成功
      */
+    @ApiModelProperty(value = "是否成功",required = true)
     private boolean success;
     /**
      * 状态码，比如1000代表响应成功
      */
+    @ApiModelProperty(value = "业务处理结果码",required = true)
     private int code;
     /**
      * 响应信息，用来说明响应情况
      */
+    @ApiModelProperty(value = "业务处理说明",required = false)
     private String msg;
     /**
      * 响应的具体数据
      */
+    @ApiModelProperty(value = "响应数据",required = false)
     private T data;
 
     /**
@@ -55,10 +62,14 @@ public class ResultVO<T> {
         this.success = success;
     }
 
+
+
     @Override
     public String toString() {
         return "{"
-                + "\"code\":"
+                + "\"success\":"
+                + success
+                + ",\"code\":"
                 + code
                 + ",\"msg\":\""
                 + msg + '\"'

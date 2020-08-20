@@ -21,10 +21,10 @@ import javax.validation.Valid;
  */
 @Api(value = "sdi", tags = "SDI业务")
 @ApiResponses({
-        @ApiResponse(code = 200, message = "操作成功", response = ResultVO.class),
-        @ApiResponse(code = 201, message = "操作失败", response = ResultVO.class),
-        @ApiResponse(code = 402, message = "输入数据检查不通过", response = ResultVO.class),
-        @ApiResponse(code = 500, message = "后台程序异常", response = ResultVO.class)
+        @ApiResponse(code = 200, message = "操作成功"),
+        @ApiResponse(code = 201, message = "操作失败"),
+        @ApiResponse(code = 402, message = "输入数据检查不通过"),
+        @ApiResponse(code = 500, message = "后台程序异常")
 })
 @RestController
 @RequestMapping("sdi")
@@ -33,15 +33,9 @@ public class SDIController {
     @Autowired
     private SDIService sdiService;
 
-    @Autowired
-    private RedisUtil redisUtil;
-
     @ApiOperation(value = "为SDI提供注册服务", notes = "sdi向主控注册服务")
-    @ApiImplicitParams({@ApiImplicitParam(paramType = "query", name = "ip", value = "sdi的外网ip地址或域名", required = true),
-            @ApiImplicitParam(paramType = "query", name = "port", value = "sdi的外网端口", required = true)
-    })
     @GetMapping("registry")
-    public ResultVO registrySDI(@RequestParam("ip") @Valid String sdiIP, @RequestParam("port") @Valid String sdiPort) {
+    public ResultVO registrySDI(@RequestParam("ip") @Valid @ApiParam(value = "sdi的web服务ip",required = true) String sdiIP, @RequestParam("port") @Valid @ApiParam(value = "sdi的web服务port",required = true) String sdiPort) {
         sdiService.registrySDI(sdiIP, sdiPort);
         return new ResultVO(ResultCode.SUCCESS);
     }

@@ -8,8 +8,7 @@ logging:
     dao: debug
     org:
       mybatis: debug
-swagger:
-  base-package: com.aehter.sharenettyservice.controller
+
 
 zookeeper:
   address: 127.0.0.1:2181
@@ -24,10 +23,47 @@ sdi:
     host: 192.168.11.110
     port: 8084
 
+swagger:
+  base-package: com.aehter.sharenettyservice.controller
+
+spring:
+  datasource:
+    #   数据源基本配置
+    username: root
+    password:
+    url: jdbc:mysql://127.0.0.1:3306/share-wifi?serverTimezone=Asia/Shanghai&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    #   数据源其他配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+mybatis:
+  type-aliases-package: com.aehter.sharenettyservice.entity  # 注意：对应实体类的路径
+  configuration:
+    mapUnderscoreToCamelCase: true
+    callSettersOnNulls: true
+    logImpl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mapper/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
+
 #Matser的ip地址
 redis:
   keys:
     sta: STA
+    netty: NETTY
   hostName: 127.0.0.1
   #端口号
   port: 6379

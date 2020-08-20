@@ -6,10 +6,7 @@ import com.aether.sharemainctlservice.entity.TGpsHis;
 import com.aether.sharemainctlservice.entity.TWifiInfo;
 import com.aether.sharemainctlservice.service.TDeviceInfoService;
 import com.aether.sharemainctlservice.service.TWifiInfoService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -23,10 +20,10 @@ import javax.validation.Valid;
  */
 @Api(value = "ap", tags = "热点管理")
 @ApiResponses({
-        @ApiResponse(code = 200, message = "操作成功", response = ResultVO.class),
-        @ApiResponse(code = 201, message = "操作失败", response = ResultVO.class),
-        @ApiResponse(code = 402, message = "输入数据检查不通过", response = ResultVO.class),
-        @ApiResponse(code = 500, message = "后台程序异常", response = ResultVO.class)
+        @ApiResponse(code = 200, message = "操作成功"),
+        @ApiResponse(code = 201, message = "操作失败"),
+        @ApiResponse(code = 402, message = "输入数据检查不通过"),
+        @ApiResponse(code = 500, message = "后台程序异常")
 })
 @RestController
 @RequestMapping("tWifiInfo")
@@ -42,10 +39,10 @@ public class TWifiInfoController {
      *
      * @return 单条数据
      */
-    @ApiOperation(value = "热点上报", notes = "终端设备箱共享热点",response = ResultVO.class)
+    @ApiOperation(value = "热点上报", notes = "终端设备箱共享热点")
     @GetMapping("reg||login")
-    public ResultVO<TWifiInfo> regOrLogin(@RequestBody @Valid TWifiInfo tWifiInfo,
-                                          @RequestBody @Valid TGpsHis tGpsHis) {
+    public ResultVO<TWifiInfo> regOrLogin(@RequestBody @Valid  TWifiInfo tWifiInfo,
+                                          @RequestBody @Valid  TGpsHis tGpsHis) {
         TWifiInfo tWifiInfo1 = tWifiInfoService.save(tWifiInfo,tGpsHis);
         return new ResultVO(tWifiInfo1);
     }

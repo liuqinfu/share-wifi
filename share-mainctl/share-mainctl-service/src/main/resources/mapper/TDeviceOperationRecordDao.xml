@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aether.sharemainctlservice.dao.TDeviceOperationRecordDao">
+
+    <resultMap id="BaseResultMap" type="com.aether.sharemainctlservice.entity.TDeviceOperationRecord">
+        <id property="id" column="id" />
+        <result property="deviceId" column="device_id" />
+        <result property="operationType" column="operation_type" />
+        <result property="action" column="action" />
+        <result property="operationTime" column="operation_time" />
+        <result property="operationData" column="operation_data" />
+        <result property="longitude" column="longitude" />
+        <result property="latitude" column="latitude" />
+        <result property="gpsAddress" column="gps_address" />
+        <result property="remarks" column="remarks" />
+        <result property="createdTime" column="created_time" />
+    </resultMap>
+
+    <sql id="BaseColumnIncludeIdSql">
+        id, device_id, operation_type, action, operation_time, operation_data,
+        longitude, latitude, gps_address, remarks, created_time
+    </sql>
+
+    <sql id="BaseColumnExcludeIdSql">
+        device_id, operation_type, action, operation_time, operation_data,
+        longitude, latitude, gps_address, remarks, created_time
+    </sql>
+
+    <insert id="save" parameterType="com.aether.sharemainctlservice.entity.TDeviceOperationRecord">
+        insert into t_device_operation_record
+        <trim prefix=" (" suffix=")" suffixOverrides=",">
+            <if test="deviceId != null and deviceId != ''">device_id,</if>
+            <if test="operationType != null and operationType != ''">operation_type,</if>
+            <if test="action != null">action,</if>
+            <if test="operationTime != null">operation_time,</if>
+            <if test="operationData != null and operationData != ''">operation_data,</if>
+            <if test="longitude != null">longitude,</if>
+            <if test="latitude != null">latitude,</if>
+            <if test="gpsAddress != null and gpsAddress != ''">gps_address,</if>
+            <if test="remarks != null and remarks != ''">remarks,</if>
+            <if test="createdTime != null">created_time</if>
+        </trim>
+        <trim prefix=" values (" suffix=")" suffixOverrides=",">
+            <if test="deviceId != null and deviceId != ''">#{deviceId},</if>
+            <if test="operationType != null and operationType != ''">#{operationType},</if>
+            <if test="action != null">#{action},</if>
+            <if test="operationTime != null">#{operationTime},</if>
+            <if test="operationData != null and operationData != ''">#{operationData},</if>
+            <if test="longitude != null">#{longitude},</if>
+            <if test="latitude != null">#{latitude},</if>
+            <if test="gpsAddress != null and gpsAddress != ''">#{gpsAddress},</if>
+            <if test="remarks != null and remarks != ''">#{remarks},</if>
+            <if test="createdTime != null">#{createdTime}</if>
+        </trim>
+    </insert>
+
+    <select id="findRecordsByCondition" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select <include refid="BaseColumnIncludeIdSql" />
+        from t_device_operation_record r
+        where r.device_id = #{deviceId} 
+        <if test="operationType != null and operationType != ''">
+            and r.operation_type = #{operationType}
+        </if>
+        <if test="startTime != null and startTime != '' and endTime != null and endTime != ''">
+            and r.operation_time between #{startTime} and #{endTime}
+        </if>
+        order by r.operation_time desc
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+</mapper>

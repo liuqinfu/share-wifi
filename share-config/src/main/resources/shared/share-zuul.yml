@@ -13,6 +13,9 @@ zuul:
     share-mainctl:
       path: /main/**
       serviceId: share-mainctl
+    share-netty:
+      path: /netty/**
+      serviceId: share-netty
 
 server:
   port: 8080

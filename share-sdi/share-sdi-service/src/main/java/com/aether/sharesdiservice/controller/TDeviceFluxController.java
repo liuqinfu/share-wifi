@@ -4,8 +4,10 @@ import com.aether.sharecommon.finals.ResultCode;
 import com.aether.sharecommon.finals.ResultVO;
 import com.aether.sharesdiservice.entity.TDeviceFlux;
 import com.aether.sharesdiservice.service.TDeviceFluxService;
+import io.swagger.annotations.Api;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -19,6 +21,7 @@ import java.util.Map;
  * @author makejava
  * @since 2020-08-16 12:37:29
  */
+@ApiIgnore
 @RestController
 @RequestMapping("sdi/flux")
 public class TDeviceFluxController {

@@ -9,6 +9,7 @@ import io.netty.channel.ChannelFuture;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.zookeeper.*;
 import org.apache.zookeeper.data.Stat;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -30,6 +31,7 @@ import java.util.Map;
 @Slf4j
 @SpringBootApplication
 @EnableEurekaClient
+@MapperScan(basePackages = {"com.aehter.sharenettyservice.dao"})
 public class NettyApplication implements CommandLineRunner {
     private static ConfigurableApplicationContext ctx;
     @Autowired

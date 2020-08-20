@@ -15,7 +15,17 @@ public enum UsageMessageType {
     /**
      * 切换ap
      */
-    CHANGE_AP("changeap");
+    CHANGE_AP("changeap"),
+
+    /**
+     * 位置上报
+     */
+    REPORT_GPS("gps"),
+
+    /**
+     * 流量上报
+     */
+    REPORT_FLUX("flux");
 
     private String usageType;
 

@@ -63,6 +63,10 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.dtflys.forest</groupId>
+            <artifactId>spring-boot-starter-forest</artifactId>
+        </dependency>
     </dependencies>
 
 

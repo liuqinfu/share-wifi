@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aehter.sharenettyservice.dao.TDeviceInfoDao">
+
+    <resultMap id="BaseResultMap" type="com.aehter.sharenettyservice.entity.TDeviceInfo">
+        <!--@Table t_device_info-->
+        <result property="deviceId" column="device_id" jdbcType="VARCHAR"/>
+        <result property="band" column="band" jdbcType="VARCHAR"/>
+        <result property="sysV" column="sys_v" jdbcType="VARCHAR"/>
+        <result property="uiV" column="ui_v" jdbcType="VARCHAR"/>
+        <result property="registerTime" column="register_time" jdbcType="TIMESTAMP"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          device_id, band, sys_v, ui_v, register_time, status
+        from share-wifi.t_device_info
+        where device_id = #{deviceId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          device_id,band, sys_v, ui_v, register_time, status
+        from share-wifi.t_device_info
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          device_id,band, sys_v, ui_v, register_time, status
+        from share-wifi.t_device_info
+        <where>
+            <if test="deviceId != null and deviceId != ''">
+                and device_id = #{deviceId}
+            </if>
+            <if test="band != null and band != ''">
+                and band = #{band}
+            </if>
+            <if test="sysV != null and sysV != ''">
+                and sys_v = #{sysV}
+            </if>
+            <if test="uiV != null and uiV != ''">
+                and ui_v = #{uiV}
+            </if>
+            <if test="registerTime != null">
+                and register_time = #{registerTime}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert">
+        insert into share-wifi.t_device_info(deviceId,band,sys_v, ui_v, register_time, status)
+        values (#{deviceId},#{band},#{sysV}, #{uiV}, #{registerTime}, #{status})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update share-wifi.t_device_info
+        <set>
+            <if test="sysV != null and sysV != ''">
+                sys_v = #{sysV},
+            </if>
+            <if test="band != null and band != ''">
+                band = #{band},
+            </if>
+            <if test="uiV != null and uiV != ''">
+                ui_v = #{uiV},
+            </if>
+            <if test="registerTime != null">
+                register_time = #{registerTime},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+        </set>
+        where device_id = #{deviceId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from share-wifi.t_device_info where device_id = #{deviceId}
+    </delete>
+
+</mapper>

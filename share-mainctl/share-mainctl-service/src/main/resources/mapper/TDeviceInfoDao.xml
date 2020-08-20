@@ -5,6 +5,7 @@
     <resultMap id="BaseResultMap" type="com.aether.sharemainctlservice.entity.TDeviceInfo">
         <!--@Table t_device_info-->
         <result property="deviceId" column="device_id" jdbcType="VARCHAR"/>
+        <result property="band" column="band" jdbcType="VARCHAR"/>
         <result property="sysV" column="sys_v" jdbcType="VARCHAR"/>
         <result property="uiV" column="ui_v" jdbcType="VARCHAR"/>
         <result property="registerTime" column="register_time" jdbcType="TIMESTAMP"/>
@@ -14,13 +15,13 @@
     <!--查询单个-->
     <select id="queryById" resultMap="BaseResultMap">
         select
-          device_id, sys_v, ui_v, register_time, status
+          device_id,band, sys_v, ui_v, register_time, status
         from share-wifi.t_device_info
         where device_id = #{deviceId}
     </select>
     <select id="queryByIds" resultMap="BaseResultMap">
         select
-          device_id, sys_v, ui_v, register_time, status
+          device_id,band, sys_v, ui_v, register_time, status
         from share-wifi.t_device_info
         where device_id in
          <foreach collection="ids" item="deviceId" separator="," open="(" close=")">
@@ -32,7 +33,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
-          device_id, sys_v, ui_v, register_time, status
+          device_id,band, sys_v, ui_v, register_time, status
         from share-wifi.t_device_info
         limit #{offset}, #{limit}
     </select>
@@ -40,11 +41,14 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="BaseResultMap">
         select
-          device_id, sys_v, ui_v, register_time, status
+          device_id,band, sys_v, ui_v, register_time, status
         from share-wifi.t_device_info
         <where>
             <if test="deviceId != null and deviceId != ''">
                 and device_id = #{deviceId}
+            </if>
+            <if test="band != null and band != ''">
+                and band = #{band}
             </if>
             <if test="sysV != null and sysV != ''">
                 and sys_v = #{sysV}
@@ -63,14 +67,17 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="deviceId" useGeneratedKeys="true">
-        insert into share-wifi.t_device_info(sys_v, ui_v, register_time, status)
-        values (#{sysV}, #{uiV}, #{registerTime}, #{status})
+        insert into share-wifi.t_device_info(deviceId,band,sys_v, ui_v, register_time, status)
+        values (#{deviceId},#{band},#{sysV}, #{uiV}, #{registerTime}, #{status})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
         update share-wifi.t_device_info
         <set>
+            <if test="band != null and band != ''">
+                band = #{band},
+            </if>
             <if test="sysV != null and sysV != ''">
                 sys_v = #{sysV},
             </if>

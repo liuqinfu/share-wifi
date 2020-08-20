@@ -45,7 +45,7 @@ mybatis:
     mapUnderscoreToCamelCase: true
     callSettersOnNulls: true
     logImpl: org.apache.ibatis.logging.stdout.StdOutImpl
-  mapper-locations: classpath:mapping/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
+  mapper-locations: classpath:mapper/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
 #用户头像访问域名
 HEAD_IMG_DOMAIN: http://123.58.34.188:38080/head-img/
 #用户头像本地存放路径(绝对路径)
@@ -53,6 +53,9 @@ HEAD_IMG_DEST: /usr/local/soslock/headImg/
 
 #Matser的ip地址
 redis:
+  keys:
+    sta: STA
+    netty: NETTY
   hostName: 127.0.0.1
   #端口号
   port: 6379
@@ -83,3 +86,6 @@ sdi:
 #  SDI注册后保存的位置
   redis: #在热点中的位置
     reg: SDI_CENTER
+
+url:
+  greaterwifi: http://www.baidu.com

@@ -2,7 +2,9 @@ package com.aether.sharesdiservice.controller;
 
 import com.aether.sharesdiservice.entity.TRemotecmdInfo;
 import com.aether.sharesdiservice.service.TRemotecmdInfoService;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.annotation.Resource;
 
@@ -12,6 +14,7 @@ import javax.annotation.Resource;
  * @author 我走路带风
  * @since 2020-08-18 17:47:23
  */
+@ApiIgnore
 @RestController
 @RequestMapping("tRemotecmdInfo")
 public class TRemotecmdInfoController {

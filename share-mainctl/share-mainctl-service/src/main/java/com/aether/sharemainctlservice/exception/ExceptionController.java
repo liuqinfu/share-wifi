@@ -44,4 +44,9 @@ public class ExceptionController {
         return new ResultVO<>(ResultCode.ERROR,e.getMessage());
     }
 
+    @ExceptionHandler(ParameterException.class)
+    public ResultVO<String> parameterExceptionHandler(ParameterException e) {
+        return new ResultVO<>(false, e.getCode(), e.getMessage());
+    }
+
 }

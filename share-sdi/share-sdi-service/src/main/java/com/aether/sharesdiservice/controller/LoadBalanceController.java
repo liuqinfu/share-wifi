@@ -3,6 +3,7 @@ package com.aether.sharesdiservice.controller;
 import com.aether.sharecommon.finals.ResultVO;
 import com.aether.sharecommon.utils.RedisUtil;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,10 @@ import java.util.*;
  */
 @Api(value = "balance", tags = "netty负载均衡器")
 @ApiResponses({
-        @ApiResponse(code = 200, message = "操作成功", response = ResultVO.class),
-        @ApiResponse(code = 201, message = "操作失败", response = ResultVO.class),
-        @ApiResponse(code = 402, message = "输入数据检查不通过", response = ResultVO.class),
-        @ApiResponse(code = 500, message = "后台程序异常", response = ResultVO.class)
+        @ApiResponse(code = 200, message = "操作成功"),
+        @ApiResponse(code = 201, message = "操作失败"),
+        @ApiResponse(code = 402, message = "输入数据检查不通过"),
+        @ApiResponse(code = 500, message = "后台程序异常")
 })
 @RestController
 @RequestMapping("balance")
@@ -37,6 +38,12 @@ public class LoadBalanceController {
     @Value("${server.port}")
     private int port;
 
+    /**
+     * 获取netty
+     *
+     * @return
+     */
+    @ApiOperation(value = "获取netty服务器", notes = "获取netty服务器ip：port")
     @GetMapping("getnetty")
     public ResultVO<String> getNetty(){
         String serverAddr = ip+":"+port;
@@ -53,7 +60,7 @@ public class LoadBalanceController {
      * @param source
      * @return
      */
-    public List<Map.Entry<String,Integer>> sortASC(Map source){
+    private List<Map.Entry<String,Integer>> sortASC(Map source){
         List<Map.Entry<String,Integer>> list = new ArrayList<Map.Entry<String,Integer>>(source.entrySet());
         Collections.sort(list,new Comparator<Map.Entry<String,Integer>>() {
             //升序排序

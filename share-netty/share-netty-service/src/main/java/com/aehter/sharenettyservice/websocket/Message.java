@@ -1,5 +1,6 @@
 package com.aehter.sharenettyservice.websocket;
 
+import com.aehter.sharenettyservice.enums.MessageType;
 import com.aehter.sharenettyservice.enums.UsageMessageType;
 import com.aether.sharecommon.utils.StringUtil;
 import com.alibaba.fastjson.annotation.JSONField;
@@ -18,15 +19,19 @@ public class Message {
     //发送内容
     private Object message;
 
+    //消息类型   request or  response
+    private String messageType;
+
     //发送时间
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     private String usageType = UsageMessageType.CHANGE_AP.getUsageType();
 
-    public Message(Object message, UsageMessageType usageMessageType) {
+    public Message(Object message, MessageType messageType, UsageMessageType usageMessageType) {
         this.message = message;
         this.createTime = new Date();
+        this.messageType = messageType.getMessageType();
         this.usageType = usageMessageType.getUsageType();
     }
 

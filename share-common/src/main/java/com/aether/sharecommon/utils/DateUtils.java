@@ -18,6 +18,9 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 
 	// 格式：年－月－日
     public static final String LONG_DATE_FORMAT = "yyyy-MM-dd";
+
+    public static final String yyyy_MM_dd = "yyyy-MM-dd";
+	public static final String yyyy_MM_dd_HH_mm_ss = "yyyy-MM-dd HH:mm:ss";
     
     /**
      * 给知道日期加上指定天数

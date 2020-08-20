@@ -6,6 +6,7 @@ import com.aether.sharemainctlservice.entity.TDeviceInfo;
 import com.aether.sharemainctlservice.dao.TDeviceInfoDao;
 import com.aether.sharemainctlservice.entity.TGpsHis;
 import com.aether.sharemainctlservice.service.TDeviceInfoService;
+import com.aether.sharemainctlservice.thirdparty.OtherOuterApi;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,14 +36,17 @@ public class TDeviceInfoServiceImpl implements TDeviceInfoService {
     @Autowired
     private RedisUtil redisUtil;
 
-    @Value("${sdi.redis.reg}")
-    private String sdi_reg;
+    @Autowired
+    private OtherOuterApi otherOuterApi;
 
     /**
      * STA终端信息
      */
-    @Value("${redis.keys.online.device}")
+    @Value("${redis.keys.netty}")
     private String onlineDeviceTokens;
+
+    @Value("${url.greaterwifi}")
+    private String getGreatWifiUrl;
 
     /**
      * 通过ID查询单条数据
@@ -61,8 +65,8 @@ public class TDeviceInfoServiceImpl implements TDeviceInfoService {
      */
     @Override
     public List<TDeviceInfo> queryDevicesOnlinesOr() {
-        Set<Object> setTokens =redisUtil.sGet(onlineDeviceTokens);
-        List<Object> tokens = setTokens.stream().collect(Collectors.toList());
+        Map<Object, Object> hmget = redisUtil.hmget(onlineDeviceTokens);
+        List<Object> tokens = hmget.keySet().stream().collect(Collectors.toList());
         List<TDeviceInfo> tDeviceInfos = this.tDeviceInfoDao.queryByIds(tokens);
         return tDeviceInfos;
     }
@@ -93,8 +97,8 @@ public class TDeviceInfoServiceImpl implements TDeviceInfoService {
             tDeviceInfoDao.insert(tDeviceInfo);
         }
         //获取最优热点
-
-
+        Map greaterWIFI = otherOuterApi.getGreaterWIFI(getGreatWifiUrl, tGpsHis.getLatitude(), tGpsHis.getLongitude());
+        tDeviceInfo.setApInfo(JSONObject.toJSONString(greaterWIFI));
         //获取SDI
         Map<Object, Object> sdi_balance_load = redisUtil.hmget("MAIN_CTL");
         List<Map.Entry<String, Integer>> sdi_balances = sortASC(sdi_balance_load);

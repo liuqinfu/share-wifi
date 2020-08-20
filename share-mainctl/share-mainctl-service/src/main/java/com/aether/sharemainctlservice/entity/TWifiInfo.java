@@ -1,8 +1,10 @@
 package com.aether.sharemainctlservice.entity;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiParam;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.io.Serializable;
 
@@ -12,35 +14,37 @@ import java.io.Serializable;
  * @author 我走路带风
  * @since 2020-08-14 17:05:57
  */
+@ApiModel(description = "热点信息")
 public class TWifiInfo implements Serializable {
     private static final long serialVersionUID = 302431995523545456L;
     /**
     * 设备行记录id
     */
-    @ApiParam(name = "设备唯一标识",required = true)
+    @NotNull(message = "设备唯一标识不能为空")
+    @ApiModelProperty(notes = "设备唯一标识",required = true)
     private String deviceId;
     /**
     * 热点唯一标识
     */
-    @ApiModelProperty(name = "热点唯一标识")
+    @ApiModelProperty(notes = "热点唯一标识")
     private String bssid;
     /**
     * 热点名称
     */
-    @ApiParam(name = "热点名称唯一标识",required = true)
-    @ApiModelProperty(name = "热点唯名称",required = true)
+    @NotNull(message = "热点名称不能为空")
+    @ApiModelProperty(notes = "热点名称",required = true)
     private String ssid;
     /**
     * 热点加密方式
     */
-    @ApiParam(name = "热点加密方式",required = true)
-    @ApiModelProperty(name = "热点加密方式",required = true)
+    @NotNull(message = "热点加密方式不能为空")
+    @ApiModelProperty(notes = "热点加密方式",required = true)
     private String encryType;
     /**
     * 热点密码
     */
-    @ApiParam(name = "热点密码",required = true)
-    @ApiModelProperty(name = "热点密码",required = true)
+    @NotNull(message = "热点密码不能为空")
+    @ApiModelProperty(notes = "热点密码",required = true)
     private String pwd;
     /**
     * 创建时间

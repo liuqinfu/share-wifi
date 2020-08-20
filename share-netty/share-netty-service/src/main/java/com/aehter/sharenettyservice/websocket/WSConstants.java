@@ -9,9 +9,12 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Slf4j
 public class WSConstants {
+	public static final ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors()*2);
     public static final AttributeKey<String> CHANNEL_TOKEN_KEY = AttributeKey.valueOf("netty.channel.token");  
 	/**用来保存当前在线人员*/
 	public static Map<String, ChannelId> tokenchannelsId = new ConcurrentHashMap<>();
@@ -26,7 +29,7 @@ public class WSConstants {
 	}
 
 	//移除断线用户，由于有超时情况，需要判断用户是否重新连接
-	public static void removeChannels(Channel channel, RedisUtil redisUtil, String sdi_host, String STAInfo_redisKey) {
+	public static void removeChannels(Channel channel, RedisUtil redisUtil, String sdi_host,String netty_socket_host,String netty_redisKey, String STAInfo_redisKey) {
 		String token = channelsIdtoken.get(channel.id());
 		if(StringUtils.isNotEmpty(token) && tokenchannelsId.containsKey(token)){
 			//如果终端在读超时之前已经重新建立连接，那么不能删除tokenchannelsId
@@ -34,8 +37,12 @@ public class WSConstants {
 				tokenchannelsId.remove(token);
 				try {
 					if (StringUtils.isNotBlank(token)){
+						redisUtil.hdel(netty_redisKey,token);//解除netty与终端的关系
 						redisUtil.hdel(sdi_host,token);//解除sdi与终端的关系
 						redisUtil.hdel(STAInfo_redisKey,token);
+						//修改负载数
+						redisUtil.hdecr(sdi_host,netty_socket_host,1);
+						redisUtil.hdecr("MAIN_CTL",sdi_host,1);
 						log.warn("终端：{} 下线。channelId:{}",token,channel.id().asLongText());
 					}
 				} catch (Exception e) {

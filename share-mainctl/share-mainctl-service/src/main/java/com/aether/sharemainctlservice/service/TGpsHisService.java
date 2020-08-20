@@ -1,6 +1,10 @@
 package com.aether.sharemainctlservice.service;
 
 import com.aether.sharemainctlservice.entity.TGpsHis;
+import com.aether.sharemainctlservice.vo.GpsRequestVo;
+import com.aether.sharemainctlservice.vo.GpsResponseVo;
+import org.springframework.web.bind.annotation.RequestBody;
+
 import java.util.List;
 
 /**
@@ -36,6 +40,14 @@ public interface TGpsHisService {
      * @return 实例对象
      */
     TGpsHis update(TGpsHis tGpsHis);
+
+
+    /**
+     * 根据条件 查询 终端移动轨迹
+     * @param vo
+     * @return
+     */
+    List<GpsResponseVo> findGpsByCondition(GpsRequestVo vo);
 
 
 }
