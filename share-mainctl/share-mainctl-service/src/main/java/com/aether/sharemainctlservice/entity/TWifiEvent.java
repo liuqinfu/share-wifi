@@ -42,7 +42,7 @@ public class TWifiEvent implements Serializable {
      * 事件类型  con:连接  discon:断开
      */
     @NotNull(message = "事件类型不能为空")
-    @ApiModelProperty(value = "事件类型: con || discon",required = true)
+    @ApiModelProperty(value = "事件类型",allowableValues = "con,discon",required = true)
     private String event;
     /**
      * 事件发生时间

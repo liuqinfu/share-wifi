@@ -17,4 +17,7 @@ public final class PubFinals {
 	public final static String PAGE_SUFFIX="ToPage";
 	public final static String PAGE_SIZE="pageSize";
 	public final static String PAGE_INDEX="pageIndex";
+
+	public static final int INT_10 = 10;	// 10：字符长度
+
 }

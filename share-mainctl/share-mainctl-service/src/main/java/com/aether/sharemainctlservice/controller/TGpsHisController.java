@@ -1,5 +1,6 @@
 package com.aether.sharemainctlservice.controller;
 
+import com.aether.sharecommon.finals.PubFinals;
 import com.aether.sharecommon.finals.ResultCode;
 import com.aether.sharecommon.finals.ResultVO;
 import com.aether.sharecommon.utils.DateUtils;
@@ -40,7 +41,7 @@ public class TGpsHisController {
     public ResultVO<List<GpsResponseVo>> findGpsByCondition(@RequestBody GpsRequestVo vo){
         String startDate = vo.getStartDate();
         if(StringUtils.hasText(startDate)){
-            if(startDate.length() != 10){
+            if(startDate.length() != PubFinals.INT_10){
                 throw new ParameterException("startDate日期格式错误【格式：yyyy-MM-dd】");
             }
             Date sDate = DateUtils.convertDateFormat(startDate, DateUtils.yyyy_MM_dd);
@@ -50,7 +51,7 @@ public class TGpsHisController {
         }
         String endDate = vo.getEndDate();
         if(StringUtils.hasText(endDate)){
-            if(endDate.length() != 10){
+            if(endDate.length() != PubFinals.INT_10){
                 throw new ParameterException("endDate日期格式错误【格式：yyyy-MM-dd】");
             }
             Date eDate = DateUtils.convertDateFormat(endDate, DateUtils.yyyy_MM_dd);

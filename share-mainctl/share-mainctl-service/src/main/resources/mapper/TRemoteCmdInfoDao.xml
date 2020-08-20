@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aether.sharemainctlservice.dao.TRemoteCmdInfoDao">
+
+    <resultMap id="BaseResultMap" type="com.aether.sharemainctlservice.entity.TRemoteCmdInfo">
+        <id property="id" column="id" />
+        <result property="deviceBand" column="device_band" />
+        <result property="sysVersion" column="sys_version" />
+        <result property="uiVersion" column="ui_version" />
+        <result property="remoteCmds" column="remote_cmds" />
+    </resultMap>
+
+    <sql id="BaseColumnIncludeIdSql">
+        id, device_band, sys_version, ui_version, remote_cmds
+    </sql>
+
+    <select id="findRemoteCmdsByCondition" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select <include refid="BaseColumnIncludeIdSql" />
+        from t_remotecmd_info r
+        where 1 = 1
+        <if test="deviceBand != null and deviceBand != ''">
+            and r.device_band like concat('%',#{deviceBand},'%')
+        </if>
+        <if test="sysVersion != null and sysVersion != ''">
+            and r.sys_version like concat('%',#{sysVersion},'%')
+        </if>
+        <if test="uiVersion != null and uiVersion != ''">
+            and r.ui_version like concat('%',#{uiVersion},'%')
+        </if>
+        order by r.device_band asc
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+</mapper>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aether.sharemainctlservice.dao.TSetmealInfoDao">
+
+    <resultMap id="BaseResultMap" type="com.aether.sharemainctlservice.entity.TSetmealInfo">
+        <!--@Table t_setmeal_info-->
+        <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="flux" column="flux" jdbcType="NUMERIC"/>
+        <result property="price" column="price" jdbcType="NUMERIC"/>
+        <result property="indate" column="indate" jdbcType="TIMESTAMP"/>
+        <result property="description" column="description" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          id, name, flux, price, indate, description
+        from share-wifi.t_setmeal_info
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          id, name, flux, price, indate, description
+        from share-wifi.t_setmeal_info
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          id, name, flux, price, indate, description
+        from share-wifi.t_setmeal_info
+        <where>
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="flux != null">
+                and flux = #{flux}
+            </if>
+            <if test="price != null">
+                and price = #{price}
+            </if>
+            <if test="indate != null">
+                and indate = #{indate}
+            </if>
+            <if test="description != null and description != ''">
+                and description = #{description}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into share-wifi.t_setmeal_info(name, flux, price, indate, description)
+        values (#{name}, #{flux}, #{price}, #{indate}, #{description})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update share-wifi.t_setmeal_info
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="flux != null">
+                flux = #{flux},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="indate != null">
+                indate = #{indate},
+            </if>
+            <if test="description != null and description != ''">
+                description = #{description},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from share-wifi.t_setmeal_info where id = #{id}
+    </delete>
+
+</mapper>

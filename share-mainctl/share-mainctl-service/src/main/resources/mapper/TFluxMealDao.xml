@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aether.sharemainctlservice.dao.TFluxMealDao">
+
+    <resultMap id="BaseResultMap" type="com.aether.sharemainctlservice.entity.TFluxMeal">
+        <!--@Table t_flux_meal-->
+        <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="deviceId" column="device_id" jdbcType="VARCHAR"/>
+        <result property="orderId" column="order_id" jdbcType="VARCHAR"/>
+        <result property="usedFlux" column="used_flux" jdbcType="OTHER"/>
+        <result property="leftFlux" column="left_flux" jdbcType="OTHER"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="invildTime" column="invild_time" jdbcType="TIMESTAMP"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          id, device_id, order_id, used_flux, left_flux, status, invild_time, create_time, update_time
+        from share-wifi.t_flux_meal
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          id, device_id, order_id, used_flux, left_flux, status, invild_time, create_time, update_time
+        from share-wifi.t_flux_meal
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          id, device_id, order_id, used_flux, left_flux, status, invild_time, create_time, update_time
+        from share-wifi.t_flux_meal
+        <where>
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="deviceId != null and deviceId != ''">
+                and device_id = #{deviceId}
+            </if>
+            <if test="orderId != null and orderId != ''">
+                and order_id = #{orderId}
+            </if>
+            <if test="usedFlux != null">
+                and used_flux = #{usedFlux}
+            </if>
+            <if test="leftFlux != null">
+                and left_flux = #{leftFlux}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="invildTime != null">
+                and invild_time = #{invildTime}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into share-wifi.t_flux_meal(device_id, order_id, used_flux, left_flux, status, invild_time, create_time, update_time)
+        values (#{deviceId}, #{orderId}, #{usedFlux}, #{leftFlux}, #{status}, #{invildTime}, #{createTime}, #{updateTime})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update share-wifi.t_flux_meal
+        <set>
+            <if test="deviceId != null and deviceId != ''">
+                device_id = #{deviceId},
+            </if>
+            <if test="orderId != null and orderId != ''">
+                order_id = #{orderId},
+            </if>
+            <if test="usedFlux != null">
+                used_flux = #{usedFlux},
+            </if>
+            <if test="leftFlux != null">
+                left_flux = #{leftFlux},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="invildTime != null">
+                invild_time = #{invildTime},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from share-wifi.t_flux_meal where id = #{id}
+    </delete>
+
+</mapper>
