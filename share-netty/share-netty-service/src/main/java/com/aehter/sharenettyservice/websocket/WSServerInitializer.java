@@ -25,9 +25,6 @@ public class WSServerInitializer extends ChannelInitializer<Channel> {
     private final SslContext sslContext;
 
     private RedisUtil redisUtil;
-    private TRemotecmdInfoService tRemotecmdInfoService;
-    private TDeviceFluxService tDeviceFluxService;
-    private TGpsHisService tGpsHisService;
 
     private String sdi_host;
     private String netty_web_host;
@@ -38,9 +35,6 @@ public class WSServerInitializer extends ChannelInitializer<Channel> {
     public WSServerInitializer(ChannelGroup group,
                                SslContext sslContext,
                                RedisUtil redisUtil,
-                               TRemotecmdInfoService tRemotecmdInfoService,
-                               TDeviceFluxService tDeviceFluxService,
-                               TGpsHisService tGpsHisService,
                                String sdi_host,
                                String netty_web_host,
                                String netty_socket_host,
@@ -48,10 +42,7 @@ public class WSServerInitializer extends ChannelInitializer<Channel> {
                                String STAInfo_redisKey) {
         this.group = group;
         this.sslContext = sslContext;
-        this.redisUtil = redisUtil;
-        this.tRemotecmdInfoService = tRemotecmdInfoService;
-        this.tDeviceFluxService = tDeviceFluxService;
-        this.tGpsHisService = tGpsHisService;
+        this.redisUtil = redisUtil;;
         this.sdi_host = sdi_host;
         this.netty_web_host = netty_web_host;
         this.netty_socket_host = netty_socket_host;
@@ -68,7 +59,7 @@ public class WSServerInitializer extends ChannelInitializer<Channel> {
 //        pipeline.addLast(new UserHandler());
 
         //处理心跳
-        pipeline.addLast(new IdleStateHandler(4, 2, 0, TimeUnit.SECONDS));
+        pipeline.addLast(new IdleStateHandler(4, 4, 0, TimeUnit.SECONDS));
         pipeline.addLast(new HeartbeatHandler());
 
 //        pipeline.addLast(new ReadTimeoutHandler(4,TimeUnit.SECONDS));
@@ -78,6 +69,6 @@ public class WSServerInitializer extends ChannelInitializer<Channel> {
         pipeline.addLast(new HttpObjectAggregator(64 * 1024));
         pipeline.addLast(new HttpRequestHandler("/ws", redisUtil, sdi_host,netty_web_host,netty_socket_host,netty_redisKey,STAInfo_redisKey));
         pipeline.addLast(new WebSocketServerProtocolHandler("/ws"));
-        pipeline.addLast(new TextWebSocketFrameHandler(group, redisUtil,this.tRemotecmdInfoService,tDeviceFluxService,tGpsHisService, sdi_host,netty_web_host,netty_socket_host,netty_redisKey,STAInfo_redisKey));
+        pipeline.addLast(new TextWebSocketFrameHandler(group, redisUtil, sdi_host,netty_web_host,netty_socket_host,netty_redisKey,STAInfo_redisKey));
     }
 }

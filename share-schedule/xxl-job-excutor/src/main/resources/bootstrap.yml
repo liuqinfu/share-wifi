@@ -1,0 +1,13 @@
+# web port
+server:
+  port: 9091
+# no web
+#spring.main.web-environment=false
+
+spring:
+  application:
+    name: xxl-job-excutor
+  cloud:
+    config:
+      uri: http://localhost:8081
+      fail-fast: true

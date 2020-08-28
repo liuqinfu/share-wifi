@@ -13,7 +13,7 @@
     <select id="queryById" resultMap="BaseResultMap">
         select
           device_id, latitude, longitude, create_time
-        from share-wifi.t_gps_his
+        from t_gps_his
         where device_id = #{deviceId}
     </select>
 
@@ -21,7 +21,7 @@
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
           device_id, latitude, longitude, create_time
-        from share-wifi.t_gps_his
+        from t_gps_his
         limit #{offset}, #{limit}
     </select>
 
@@ -29,7 +29,7 @@
     <select id="queryAll" resultMap="BaseResultMap">
         select
           device_id, latitude, longitude, create_time
-        from share-wifi.t_gps_his
+        from t_gps_his
         <where>
             <if test="deviceId != null and deviceId != ''">
                 and device_id = #{deviceId}
@@ -48,13 +48,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="" useGeneratedKeys="true">
-        insert into share-wifi.t_gps_his(device_id, latitude, longitude, create_time)
+        insert into t_gps_his(device_id, latitude, longitude, create_time)
         values (#{deviceId}, #{latitude}, #{longitude}, #{createTime})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update share-wifi.t_gps_his
+        update t_gps_his
         <set>
             <if test="deviceId != null and deviceId != ''">
                 device_id = #{deviceId},
@@ -73,7 +73,7 @@
     </update>
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from share-wifi.t_gps_his where device_id = #{deviceId}
+        delete from t_gps_his where device_id = #{deviceId}
     </delete>
 
 

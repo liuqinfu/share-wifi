@@ -3,6 +3,7 @@ package com.aether.sharemainctlservice.dao;
 import com.aether.sharemainctlservice.entity.TFluxMeal;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (TFluxMeal)表数据库访问层
@@ -21,6 +22,13 @@ public interface TFluxMealDao {
     TFluxMeal queryById(String id);
 
     /**
+     * 查询用户的最长有效期套餐
+     * @param deviceId 设备唯一标识
+     * @return
+     */
+    TFluxMeal queryLastValidMeal(String deviceId);
+
+    /**
      * 查询指定行数据
      *
      * @param offset 查询起始位置
@@ -29,6 +37,13 @@ public interface TFluxMealDao {
      */
     List<TFluxMeal> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
+    /**
+     * 查询多条数据
+     *
+     * @param param 过滤条件参数
+     * @return 对象列表
+     */
+    List<TFluxMeal> queryAll(Map param);
 
     /**
      * 通过实体作为筛选条件查询

@@ -1,6 +1,8 @@
 package com.aether.sharemainctlservice.service;
 
 import com.aether.sharemainctlservice.entity.TDeviceFlux;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 import java.util.Map;
 
@@ -13,12 +15,27 @@ import java.util.Map;
 public interface TDeviceFluxService {
 
     /**
-     * 通过ID查询单条数据
+     * 统计sta使用的流量
      *
      * @param params 参数
      * @return 实例对象
      */
-    List<Map> countByParam(Map params);
+    List<Map> countSTAByParam(Map params);
+
+    /**
+     * 按条件查询流量使用明细
+     * @param params
+     * @return
+     */
+    List<Map> queryDetailByParam(Map params);
+
+    /**
+     * 统计AP共享的流量
+     *
+     * @param params 参数
+     * @return 实例对象
+     */
+    List<Map> countAPByParam(Map params);
 
     /**
      * 查询多条数据

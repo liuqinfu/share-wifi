@@ -3,6 +3,7 @@ package com.aether.sharemainctlservice.dao;
 import com.aether.sharemainctlservice.entity.TOrderInfo;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (TOrderInfo)表数据库访问层
@@ -37,6 +38,7 @@ public interface TOrderInfoDao {
      * @return 对象列表
      */
     List<TOrderInfo> queryAll(TOrderInfo tOrderInfo);
+    List<TOrderInfo> queryAll(Map param);
 
     /**
      * 新增数据

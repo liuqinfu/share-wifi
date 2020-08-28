@@ -14,12 +14,27 @@ import java.util.Map;
 public interface TDeviceFluxDao {
 
     /**
-     * 通过ID查询单条数据
+     * 通过时间单位或设备统计流量使用情况
      *
      * @param params 主键
      * @return 实例对象
      */
-    List<Map> countByParam(@Param("params") Map params);
+    List<Map> countSTAByParam(@Param("params") Map params);
+
+    /**
+     * 统计AP共享的流量
+     *
+     * @param params 参数
+     * @return 实例对象
+     */
+    List<Map> countAPByParam(@Param("params") Map params);
+
+    /**
+     * 按条件查询流量使用明细
+     * @param params
+     * @return
+     */
+    List<Map> queryDetailByParam(@Param("params") Map params);
 
     /**
      * 查询指定行数据

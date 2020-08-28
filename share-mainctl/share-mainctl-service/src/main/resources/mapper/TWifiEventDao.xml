@@ -15,7 +15,7 @@
     <select id="queryById" resultMap="TWifiEventMap">
         select
           id, device_id, bssid, ssid, event, create_time
-        from share-wifi.t_wifi_event
+        from  t_wifi_event
         where id = #{id}
     </select>
 
@@ -23,7 +23,7 @@
     <select id="queryAllByLimit" resultMap="TWifiEventMap">
         select
           id, device_id, bssid, ssid, event, create_time
-        from share-wifi.t_wifi_event
+        from  t_wifi_event
         limit #{offset}, #{limit}
     </select>
 
@@ -31,7 +31,7 @@
     <select id="queryAll" resultMap="TWifiEventMap">
         select
         id, device_id, bssid, ssid, event, create_time
-        from share-wifi.t_wifi_event
+        from  t_wifi_event
         <where>
             <if test="id != null and id != ''">
                 and id = #{id}
@@ -56,13 +56,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into share-wifi.t_wifi_event(device_id, bssid, ssid, event, create_time)
+        insert into  t_wifi_event(device_id, bssid, ssid, event, create_time)
         values (#{deviceId}, #{bssid}, #{ssid}, #{event}, #{createTime})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update share-wifi.t_wifi_event
+        update  t_wifi_event
         <set>
             <if test="deviceId != null and deviceId != ''">
                 device_id = #{deviceId},
@@ -85,7 +85,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from share-wifi.t_wifi_event where id = #{id}
+        delete from  t_wifi_event where id = #{id}
     </delete>
 
 </mapper>

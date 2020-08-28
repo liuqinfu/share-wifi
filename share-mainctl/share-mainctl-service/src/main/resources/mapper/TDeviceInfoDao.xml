@@ -16,25 +16,35 @@
     <select id="queryById" resultMap="BaseResultMap">
         select
           device_id,band, sys_v, ui_v, register_time, status
-        from share-wifi.t_device_info
+        from  t_device_info
         where device_id = #{deviceId}
     </select>
     <select id="queryByIds" resultMap="BaseResultMap">
         select
           device_id,band, sys_v, ui_v, register_time, status
-        from share-wifi.t_device_info
-        where device_id in
-         <foreach collection="ids" item="deviceId" separator="," open="(" close=")">
-             #{deviceId}
-         </foreach>
-         #{deviceId}
+        from t_device_info
+        <choose>
+            <when test="ids != null and ids.size() >0">
+                where device_id in
+                <foreach collection="ids" item="item" separator="," open="(" close=")">
+                    #{item}
+                </foreach>
+            </when>
+            <otherwise>
+                where 1 != 1
+            </otherwise>
+        </choose>
+        <if test="ids != null and ids.size() >0 ">
+
+        </if>
+
     </select>
 
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
           device_id,band, sys_v, ui_v, register_time, status
-        from share-wifi.t_device_info
+        from  t_device_info
         limit #{offset}, #{limit}
     </select>
 
@@ -42,7 +52,7 @@
     <select id="queryAll" resultMap="BaseResultMap">
         select
           device_id,band, sys_v, ui_v, register_time, status
-        from share-wifi.t_device_info
+        from  t_device_info
         <where>
             <if test="deviceId != null and deviceId != ''">
                 and device_id = #{deviceId}
@@ -66,18 +76,18 @@
     </select>
 
     <!--新增所有列-->
-    <insert id="insert" keyProperty="deviceId" useGeneratedKeys="true">
-        insert into share-wifi.t_device_info(deviceId,band,sys_v, ui_v, register_time, status)
+    <insert id="insert">
+        insert into  t_device_info(device_id,band,sys_v, ui_v, register_time, status)
         values (#{deviceId},#{band},#{sysV}, #{uiV}, #{registerTime}, #{status})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update share-wifi.t_device_info
+        update  t_device_info
         <set>
-            <if test="band != null and band != ''">
+            <!--<if test="band != null and band != ''">-->
                 band = #{band},
-            </if>
+            <!--</if>-->
             <if test="sysV != null and sysV != ''">
                 sys_v = #{sysV},
             </if>
@@ -96,7 +106,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from share-wifi.t_device_info where device_id = #{deviceId}
+        delete from  t_device_info where device_id = #{deviceId}
     </delete>
 
 </mapper>

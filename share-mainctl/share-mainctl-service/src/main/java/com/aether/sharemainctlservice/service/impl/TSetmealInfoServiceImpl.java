@@ -43,6 +43,17 @@ public class TSetmealInfoServiceImpl implements TSetmealInfoService {
     }
 
     /**
+     * 通过实体作为筛选条件查询
+     *
+     * @param tSetmealInfo 实例对象
+     * @return 对象列表
+     */
+    @Override
+    public List<TSetmealInfo> queryAll(TSetmealInfo tSetmealInfo) {
+        return this.tSetmealInfoDao.queryAll(tSetmealInfo);
+    }
+
+    /**
      * 新增数据
      *
      * @param tSetmealInfo 实例对象

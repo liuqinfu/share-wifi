@@ -11,11 +11,11 @@
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
-    <!--按条件统计流量-->
-    <select id="countByParam" resultType="java.util.Map">
+    <!--按条件统计流量使用-->
+    <select id="countSTAByParam" resultType="java.util.Map">
         select
         <if test="params.deviceId != null">
-            device_id,
+            device_id deviceId,
         </if>
         sum(flux) as flux,
         <choose>
@@ -33,19 +33,73 @@
         group by unit
     </select>
 
+    <!--按条件统计流量使用-->
+    <select id="countAPByParam" resultType="java.util.Map">
+
+        select
+        <if test="params.deviceId != null">
+            tdi.device_id deviceId,
+        </if>
+        sum(tdf.flux) flux,
+        <choose>
+            <when test="params.unit == 'year'">
+                DATE_FORMAT(tdf.create_time,'%Y') as unit
+            </when>
+            <otherwise>
+                DATE_FORMAT(tdf.create_time,'%Y-%m') as unit
+            </otherwise>
+        </choose>
+        from t_device_flux tdf,
+        t_device_info tdi,
+        t_wifi_info twf
+        where tdi.device_id = twf.device_id
+        and twf.ssid = tdf.ssid
+        <if test="params.deviceId != null">
+            tdi.device_id = #{params.deviceId}
+        </if>
+        group by unit
+    </select>
+
+
+    <!--按条件统计流量-->
+    <select id="queryDetailByParam" resultType="java.util.Map">
+        select
+        device_id, bssid, ssid, flux, create_time
+        from t_device_flux
+        <where>
+            <if test="params.deviceId != null and params.deviceId != ''">
+                and device_id = #{params.deviceId}
+            </if>
+            <if test="params.bssid != null and params.bssid != ''">
+                and bssid = #{params.bssid}
+            </if>
+            <if test="params.ssid != null and params.ssid != ''">
+                and ssid = #{params.ssid}
+            </if>
+            <if test="params.flux != null">
+                and flux = #{params.flux}
+            </if>
+            <if test="params.createTime != null">
+                and create_time = #{params.createTime}
+            </if>
+        </where>
+
+        group by unit
+    </select>
+
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
           device_id, bssid, ssid, flux, create_time
-        from share-wifi.t_device_flux
+        from  t_device_flux
         limit #{offset}, #{limit}
     </select>
 
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="BaseResultMap">
         select
-          device_id, bssid, ssid, flux, create_time
-        from share-wifi.t_device_flux
+        device_id, bssid, ssid, flux, create_time
+        from  t_device_flux
         <where>
             <if test="deviceId != null and deviceId != ''">
                 and device_id = #{deviceId}
@@ -67,13 +121,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="" useGeneratedKeys="true">
-        insert into share-wifi.t_device_flux(device_id, bssid, ssid, flux, create_time)
+        insert into  t_device_flux(device_id, bssid, ssid, flux, create_time)
         values (#{deviceId}, #{bssid}, #{ssid}, #{flux}, #{createTime})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update share-wifi.t_device_flux
+        update  t_device_flux
         <set>
             <if test="deviceId != null and deviceId != ''">
                 device_id = #{deviceId},
@@ -91,7 +145,7 @@
                 create_time = #{createTime},
             </if>
         </set>
-        where  = #{}
+        where = #{}
     </update>
 
 

@@ -15,12 +15,12 @@ zookeeper:
   timeout: 6000
 
 socket:
-  port: 9090
-  host: 192.168.11.110
+  port: 8888
+  host: 192.168.10.226
 
 sdi:
   server:
-    host: 192.168.11.110
+    host: 192.168.10.226
     port: 8084
 
 swagger:

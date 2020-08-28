@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (TFluxMeal)表服务实现类
@@ -40,6 +41,16 @@ public class TFluxMealServiceImpl implements TFluxMealService {
     @Override
     public List<TFluxMeal> queryAllByLimit(int offset, int limit) {
         return this.tFluxMealDao.queryAllByLimit(offset, limit);
+    }
+    /**
+     * 查询多条数据
+     *
+     * @param param 过滤条件参数
+     * @return 对象列表
+     */
+    @Override
+    public List<TFluxMeal> queryAll(Map param){
+        return this.tFluxMealDao.queryAll(param);
     }
 
     /**

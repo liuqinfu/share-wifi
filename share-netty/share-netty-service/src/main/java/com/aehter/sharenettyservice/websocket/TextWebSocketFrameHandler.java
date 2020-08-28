@@ -1,14 +1,11 @@
 package com.aehter.sharenettyservice.websocket;
 
 import com.aehter.sharenettyservice.entity.TDeviceFlux;
-import com.aehter.sharenettyservice.entity.TGpsHis;
 import com.aehter.sharenettyservice.entity.TGpsHisExtra;
 import com.aehter.sharenettyservice.entity.TRemotecmdInfo;
 import com.aehter.sharenettyservice.enums.MessageType;
 import com.aehter.sharenettyservice.enums.UsageMessageType;
-import com.aehter.sharenettyservice.service.TDeviceFluxService;
-import com.aehter.sharenettyservice.service.TGpsHisService;
-import com.aehter.sharenettyservice.service.TRemotecmdInfoService;
+import com.aehter.sharenettyservice.websocket.module.Message;
 import com.aether.sharecommon.utils.RedisUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -35,9 +32,6 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
 
     private ChannelGroup group;
     private RedisUtil redisUtil;
-    private TRemotecmdInfoService tRemotecmdInfoService;
-    private TDeviceFluxService tDeviceFluxService;
-    private TGpsHisService tGpsHisService;
 
     private String sdi_host;
     private String netty_web_host;
@@ -47,9 +41,6 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
 
     public TextWebSocketFrameHandler(ChannelGroup group,
                                      RedisUtil redisUtil,
-                                     TRemotecmdInfoService tRemotecmdInfoService,
-                                     TDeviceFluxService tDeviceFluxService,
-                                     TGpsHisService tGpsHisService,
                                      String sdi_host,
                                      String netty_web_host,
                                      String netty_socket_host,
@@ -57,9 +48,6 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
                                      String STAInfo_redisKey) {
         this.group = group;
         this.redisUtil = redisUtil;
-        this.tRemotecmdInfoService = tRemotecmdInfoService;
-        this.tDeviceFluxService = tDeviceFluxService;
-        this.tGpsHisService = tGpsHisService;
         this.sdi_host = sdi_host;
         this.netty_web_host = netty_web_host;
         this.netty_socket_host = netty_socket_host;
@@ -90,7 +78,9 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
             WSConstants.executor.execute(new Runnable() {
                 @Override
                 public void run() {
-                    TRemotecmdInfo tRemotecmdInfo = tRemotecmdInfoService.queryByDeviceId(token);
+                    //从redis中获取
+//                    TRemotecmdInfo tRemotecmdInfo = tRemotecmdInfoService.queryByDeviceId(token);
+                    TRemotecmdInfo tRemotecmdInfo = null;
                     //需要推送
                     Message message = new Message(tRemotecmdInfo, MessageType.REQUEST, UsageMessageType.REMOTE_CMDS);
                     try {
@@ -112,7 +102,7 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
     }
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, TextWebSocketFrame msg) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, TextWebSocketFrame msg){
         String token = ctx.channel().attr(WSConstants.CHANNEL_TOKEN_KEY).get();
         String text = msg.text();
         JSONObject receive = JSONObject.parseObject(text);
@@ -128,14 +118,17 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
                     if (UsageMessageType.REPORT_GPS.getUsageType().equals(usageType)){
                         //gps位置上报
                         TGpsHisExtra tGpsHisExtra = JSONObject.parseObject(message, TGpsHisExtra.class);
-                        tGpsHisService.insert(tGpsHisExtra);
+                        //位置信息暂时存储在redis，由定时任务写入到数据库
+//                        tGpsHisService.insert(tGpsHisExtra);
                         //更新redis中设备的位置信息
                         redisUtil.hset(STAInfo_redisKey,token,tGpsHisExtra);
-
                     }else if (UsageMessageType.REPORT_FLUX.getUsageType().equals(usageType)){
                         //流量上报
                         TDeviceFlux tDeviceFlux = JSONObject.parseObject(message, TDeviceFlux.class);
-                        tDeviceFluxService.insert(tDeviceFlux);
+                        //流量使用情况暂时存储在redis，由定时任务写入到数据库
+//                        tDeviceFluxService.insert(tDeviceFlux);
+                    }else if (UsageMessageType.HEART_BREAK.getUsageType().equals(usageType)){
+                        loger.info(token+":心跳");
                     }
                     //响应处理结果
                     Map resp = new HashMap<>();

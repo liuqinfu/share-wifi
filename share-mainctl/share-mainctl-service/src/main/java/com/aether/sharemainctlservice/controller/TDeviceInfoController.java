@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -42,11 +43,17 @@ public class TDeviceInfoController {
      * @return 单条数据
      */
     @ApiOperation(value = "登陆或注册设备", notes = "终端设备箱sdi注册")
-    @GetMapping("reg||login")
-    public ResultVO<TWifiInfo> regOrLogin(@RequestBody @Valid TDeviceInfo deviceInfo,
-                                          @RequestBody @Valid TGpsHis tGpsHis) {
+    @PostMapping("reglogin/{longitude}/{latitude}")
+    public ResultVO<TDeviceInfo> regOrLogin(@RequestBody @Valid TDeviceInfo deviceInfo,
+                                          @PathVariable("longitude")double longitude,
+                                          @PathVariable("latitude")double latitude) {
+        TGpsHis tGpsHis = new TGpsHis();
+        tGpsHis.setDeviceId(deviceInfo.getDeviceId());
+        tGpsHis.setLatitude(latitude);
+        tGpsHis.setLongitude(longitude);
+        tGpsHis.setCreateTime(new Date());
         TDeviceInfo tDeviceInfo = tDeviceInfoService.regLogin(deviceInfo,tGpsHis);
-        return new ResultVO(tDeviceInfo);
+        return new ResultVO<TDeviceInfo>(tDeviceInfo);
     }
 
     /**

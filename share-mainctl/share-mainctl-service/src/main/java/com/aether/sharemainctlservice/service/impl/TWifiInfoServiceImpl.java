@@ -66,10 +66,11 @@ public class TWifiInfoServiceImpl implements TWifiInfoService {
         TWifiInfo tWifiInfo1 = tWifiInfoDao.queryById(tWifiInfo.getDeviceId());
         if (tWifiInfo1 != null ){
             tWifiInfo.setCreateTime(tWifiInfo1.getCreateTime());
+            tWifiInfoDao.update(tWifiInfo);
         }else{
             tWifiInfo.setCreateTime(new Date());
+            tWifiInfoDao.insert(tWifiInfo);
         }
-        tWifiInfoDao.insert(tWifiInfo);
         tGpsHisDao.insert(tGpsHis);
         return null;
     }

@@ -8,7 +8,7 @@
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="flux" column="flux" jdbcType="NUMERIC"/>
         <result property="price" column="price" jdbcType="NUMERIC"/>
-        <result property="indate" column="indate" jdbcType="TIMESTAMP"/>
+        <result property="indate" column="indate" jdbcType="INTEGER"/>
         <result property="description" column="description" jdbcType="VARCHAR"/>
     </resultMap>
 
@@ -16,7 +16,7 @@
     <select id="queryById" resultMap="BaseResultMap">
         select
           id, name, flux, price, indate, description
-        from share-wifi.t_setmeal_info
+        from  t_setmeal_info
         where id = #{id}
     </select>
 
@@ -24,7 +24,7 @@
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
           id, name, flux, price, indate, description
-        from share-wifi.t_setmeal_info
+        from  t_setmeal_info
         limit #{offset}, #{limit}
     </select>
 
@@ -32,7 +32,7 @@
     <select id="queryAll" resultMap="BaseResultMap">
         select
           id, name, flux, price, indate, description
-        from share-wifi.t_setmeal_info
+        from  t_setmeal_info
         <where>
             <if test="id != null and id != ''">
                 and id = #{id}
@@ -57,13 +57,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into share-wifi.t_setmeal_info(name, flux, price, indate, description)
+        insert into  t_setmeal_info(name, flux, price, indate, description)
         values (#{name}, #{flux}, #{price}, #{indate}, #{description})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update share-wifi.t_setmeal_info
+        update  t_setmeal_info
         <set>
             <if test="name != null and name != ''">
                 name = #{name},
@@ -86,7 +86,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from share-wifi.t_setmeal_info where id = #{id}
+        delete from  t_setmeal_info where id = #{id}
     </delete>
 
 </mapper>

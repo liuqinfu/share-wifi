@@ -7,9 +7,10 @@
         <result property="id" column="id" jdbcType="VARCHAR"/>
         <result property="deviceId" column="device_id" jdbcType="VARCHAR"/>
         <result property="orderId" column="order_id" jdbcType="VARCHAR"/>
-        <result property="usedFlux" column="used_flux" jdbcType="OTHER"/>
-        <result property="leftFlux" column="left_flux" jdbcType="OTHER"/>
+        <result property="usedFlux" column="used_flux" jdbcType="DOUBLE"/>
+        <result property="leftFlux" column="left_flux" jdbcType="DOUBLE"/>
         <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="startTime" column="start_time" jdbcType="TIMESTAMP"/>
         <result property="invildTime" column="invild_time" jdbcType="TIMESTAMP"/>
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
         <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
@@ -18,24 +19,34 @@
     <!--查询单个-->
     <select id="queryById" resultMap="BaseResultMap">
         select
-          id, device_id, order_id, used_flux, left_flux, status, invild_time, create_time, update_time
-        from share-wifi.t_flux_meal
+          id, device_id, order_id, used_flux, left_flux, status,start_time, invild_time, create_time, update_time
+        from  t_flux_meal
         where id = #{id}
+    </select>
+
+    <!--查询单个-->
+    <select id="queryLastValidMeal" resultMap="BaseResultMap">
+        select
+          id, device_id, order_id, used_flux, left_flux, status,start_time, invild_time, create_time, update_time
+        from  t_flux_meal
+        where device_id = #{deviceId}
+        and status != 3
+        and invild_time >= now()
     </select>
 
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
-          id, device_id, order_id, used_flux, left_flux, status, invild_time, create_time, update_time
-        from share-wifi.t_flux_meal
+          id, device_id, order_id, used_flux, left_flux, status, start_time,invild_time, create_time, update_time
+        from  t_flux_meal
         limit #{offset}, #{limit}
     </select>
 
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="BaseResultMap">
         select
-          id, device_id, order_id, used_flux, left_flux, status, invild_time, create_time, update_time
-        from share-wifi.t_flux_meal
+        id, device_id, order_id, used_flux, left_flux, status, start_time,invild_time, create_time, update_time
+        from  t_flux_meal
         <where>
             <if test="id != null and id != ''">
                 and id = #{id}
@@ -55,6 +66,9 @@
             <if test="status != null">
                 and status = #{status}
             </if>
+            <if test="startTime != null">
+                and start_time = #{startTime}
+            </if>
             <if test="invildTime != null">
                 and invild_time = #{invildTime}
             </if>
@@ -69,13 +83,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into share-wifi.t_flux_meal(device_id, order_id, used_flux, left_flux, status, invild_time, create_time, update_time)
-        values (#{deviceId}, #{orderId}, #{usedFlux}, #{leftFlux}, #{status}, #{invildTime}, #{createTime}, #{updateTime})
+        insert into  t_flux_meal(device_id, order_id, used_flux, left_flux, status,start_time, invild_time, create_time, update_time)
+        values (#{deviceId}, #{orderId}, #{usedFlux}, #{leftFlux}, #{status}, #{statTime}, #{invildTime}, #{createTime}, #{updateTime})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update share-wifi.t_flux_meal
+        update  t_flux_meal
         <set>
             <if test="deviceId != null and deviceId != ''">
                 device_id = #{deviceId},
@@ -92,6 +106,9 @@
             <if test="status != null">
                 status = #{status},
             </if>
+            <if test="startTime != null">
+                start_time = #{startTime},
+            </if>
             <if test="invildTime != null">
                 invild_time = #{invildTime},
             </if>
@@ -107,7 +124,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from share-wifi.t_flux_meal where id = #{id}
+        delete from  t_flux_meal where id = #{id}
     </delete>
 
 </mapper>

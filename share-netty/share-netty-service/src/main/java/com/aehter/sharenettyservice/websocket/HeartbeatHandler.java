@@ -1,5 +1,10 @@
 package com.aehter.sharenettyservice.websocket;
 
+import com.aehter.sharenettyservice.enums.MessageType;
+import com.aehter.sharenettyservice.enums.UsageMessageType;
+import com.aehter.sharenettyservice.websocket.module.Message;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
@@ -21,7 +26,9 @@ public class HeartbeatHandler extends ChannelInboundHandlerAdapter {
         if (evt instanceof IdleStateEvent) {
             IdleState state = ((IdleStateEvent) evt).state();
             if ( state == IdleState.WRITER_IDLE) {
-                ctx.channel().writeAndFlush(new TextWebSocketFrame("HB"));
+                System.out.println("服务端发送心跳");
+                Message message = new Message("HB", MessageType.REQUEST, UsageMessageType.HEART_BREAK);
+                ctx.channel().writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(message, SerializerFeature.DisableCircularReferenceDetect)));
             }else if (state == IdleState.READER_IDLE){
                 ctx.close();
             }else {

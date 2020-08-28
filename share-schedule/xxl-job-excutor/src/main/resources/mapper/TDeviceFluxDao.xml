@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aether.xxljob.executor.dao.TDeviceFluxDao">
+
+    <resultMap id="BaseResultMap" type="com.aether.xxljob.executor.entity.TDeviceFlux">
+        <!--@Table t_device_flux-->
+        <result property="deviceId" column="device_id" jdbcType="VARCHAR"/>
+        <result property="bssid" column="bssid" jdbcType="VARCHAR"/>
+        <result property="ssid" column="ssid" jdbcType="VARCHAR"/>
+        <result property="flux" column="flux" jdbcType="OTHER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          device_id, bssid, ssid, flux, create_time
+        from share-wifi.t_device_flux
+        limit #{offset}, #{limit}
+    </select>
+
+
+    <select id="sumFluxByBeviceIdandTime" resultType="java.lang.Long">
+        select
+          sum(flux)
+        from share-wifi.t_device_flux
+        where device_id = #{deviceId}
+        and create_time >= #{startTime}
+        group by device_id
+    </select>
+
+
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          device_id, bssid, ssid, flux, create_time
+        from share-wifi.t_device_flux
+        <where>
+            <if test="deviceId != null and deviceId != ''">
+                and device_id = #{deviceId}
+            </if>
+            <if test="bssid != null and bssid != ''">
+                and bssid = #{bssid}
+            </if>
+            <if test="ssid != null and ssid != ''">
+                and ssid = #{ssid}
+            </if>
+            <if test="flux != null">
+                and flux = #{flux}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="" useGeneratedKeys="true">
+        insert into share-wifi.t_device_flux(device_id, bssid, ssid, flux, create_time)
+        values (#{deviceId}, #{bssid}, #{ssid}, #{flux}, #{createTime})
+    </insert>
+
+</mapper>

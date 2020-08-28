@@ -25,7 +25,7 @@ public interface TDeviceInfoDao {
      * @param ids 主键集合
      * @return 实例对象
      */
-    List<TDeviceInfo> queryByIds(List ids);
+    List<TDeviceInfo> queryByIds(@Param("ids") List ids);
 
     /**
      * 查询指定行数据

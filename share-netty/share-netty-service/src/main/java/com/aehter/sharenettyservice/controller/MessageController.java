@@ -3,7 +3,7 @@ package com.aehter.sharenettyservice.controller;
 import com.aehter.sharenettyservice.entity.OrderDTO;
 import com.aehter.sharenettyservice.enums.MessageType;
 import com.aehter.sharenettyservice.enums.UsageMessageType;
-import com.aehter.sharenettyservice.websocket.Message;
+import com.aehter.sharenettyservice.websocket.module.Message;
 import com.aehter.sharenettyservice.websocket.WSConstants;
 import com.aether.sharecommon.finals.ResultCode;
 import com.aether.sharecommon.finals.ResultVO;

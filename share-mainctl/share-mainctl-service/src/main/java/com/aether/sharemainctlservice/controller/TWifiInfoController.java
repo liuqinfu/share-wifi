@@ -26,7 +26,7 @@ import javax.validation.Valid;
         @ApiResponse(code = 500, message = "后台程序异常")
 })
 @RestController
-@RequestMapping("tWifiInfo")
+@RequestMapping("wifi")
 public class TWifiInfoController {
     /**
      * 服务对象
@@ -39,8 +39,8 @@ public class TWifiInfoController {
      *
      * @return 单条数据
      */
-    @ApiOperation(value = "热点上报", notes = "终端设备箱共享热点")
-    @GetMapping("reg||login")
+    @ApiOperation(value = "热点上报", notes = "终端设备共享热点")
+    @GetMapping("add")
     public ResultVO<TWifiInfo> regOrLogin(@RequestBody @Valid  TWifiInfo tWifiInfo,
                                           @RequestBody @Valid  TGpsHis tGpsHis) {
         TWifiInfo tWifiInfo1 = tWifiInfoService.save(tWifiInfo,tGpsHis);

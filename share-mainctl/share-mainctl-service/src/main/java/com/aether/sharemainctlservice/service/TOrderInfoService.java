@@ -2,6 +2,7 @@ package com.aether.sharemainctlservice.service;
 
 import com.aether.sharemainctlservice.entity.TOrderInfo;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (TOrderInfo)表服务接口
@@ -20,6 +21,22 @@ public interface TOrderInfoService {
     TOrderInfo queryById(String id);
 
     /**
+     * 初始化订单
+     * @param deviceId 设备唯一标识
+     * @param mealId  套餐id
+     * @return
+     */
+    TOrderInfo initOrder(String deviceId,String mealId);
+
+    /**
+     * 支付订单
+     * @param deviceId 设备唯一标识
+     * @param orderId  订单id
+     * @return
+     */
+    void payOrder(String deviceId,String orderId);
+
+    /**
      * 查询多条数据
      *
      * @param offset 查询起始位置
@@ -27,6 +44,13 @@ public interface TOrderInfoService {
      * @return 对象列表
      */
     List<TOrderInfo> queryAllByLimit(int offset, int limit);
+
+    /**
+     * 查询多条数据
+     * @param param 参数
+     * @return 对象列表
+     */
+    List<TOrderInfo> queryAll(Map param);
 
     /**
      * 新增数据

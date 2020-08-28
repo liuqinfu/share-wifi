@@ -11,6 +11,7 @@
         <module>share-common</module>
         <module>share-mainctl</module>
         <module>share-netty</module>
+        <module>share-schedule</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

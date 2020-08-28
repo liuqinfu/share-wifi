@@ -2,6 +2,7 @@ package com.aether.sharemainctlservice.service;
 
 import com.aether.sharemainctlservice.entity.TFluxMeal;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (TFluxMeal)表服务接口
@@ -27,6 +28,14 @@ public interface TFluxMealService {
      * @return 对象列表
      */
     List<TFluxMeal> queryAllByLimit(int offset, int limit);
+
+    /**
+     * 查询多条数据
+     *
+     * @param param 过滤条件参数
+     * @return 对象列表
+     */
+    List<TFluxMeal> queryAll(Map param);
 
     /**
      * 新增数据

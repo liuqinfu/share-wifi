@@ -53,10 +53,12 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequ
             QueryStringDecoder query = new QueryStringDecoder(request.uri());
             Map<String, List<String>> map = query.parameters();
             List<String> tokens = map.get("token");
+            List<String> bssidSsid = map.get("bssid_ssid");
             //根据参数保存当前登录对象, 并把该token加入到channel中
-            if (tokens != null && !tokens.isEmpty()) {
+            if (tokens != null && !tokens.isEmpty() ) {
                 String token = tokens.get(0);
                 ctx.channel().attr(WSConstants.CHANNEL_TOKEN_KEY).getAndSet(token);
+                if (bssidSsid != null && !bssidSsid.isEmpty())ctx.channel().attr(WSConstants.CHANNEL_AP_KEY).getAndSet(bssidSsid.get(0));
             }else{
                 ctx.close();
             }

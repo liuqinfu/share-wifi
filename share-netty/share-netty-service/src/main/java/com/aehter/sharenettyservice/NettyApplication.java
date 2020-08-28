@@ -66,7 +66,7 @@ public class NettyApplication implements CommandLineRunner {
         jsonObject.put("port",socket_port);
         String service_url = socket_host+":"+socket_port;
         regNetty(service_url,0);
-        zkClient.addWatch("/LB/192.168.11.110", new Watcher() {
+        zkClient.addWatch("/LB/192.168.10.226", new Watcher() {
             @Override
             public void process(WatchedEvent watchedEvent) {
                 // 获取事件状态
@@ -111,7 +111,7 @@ public class NettyApplication implements CommandLineRunner {
      * @return
      */
     public boolean regNetty(String service_url,int loads){
-        boolean regResult = createTmpNode("/LB/192.168.11.110/"+service_url, String.valueOf(loads));
+        boolean regResult = createTmpNode("/LB/192.168.10.226/"+service_url, String.valueOf(loads));
         if (!regResult){
             //netty注册失败，停止服务
             exitApplication(ctx);

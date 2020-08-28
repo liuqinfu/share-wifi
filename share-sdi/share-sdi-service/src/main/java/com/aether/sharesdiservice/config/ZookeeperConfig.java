@@ -62,13 +62,13 @@ public class ZookeeperConfig {
             });
             countDownLatch.await();
             log.info("【初始化ZooKeeper连接状态....】={}", zooKeeper.getState());
-//            先监听，在创建“/LB/192.168.11.110”节点时，触发节点创建事件
-            zooKeeper.addWatch("/LB/192.168.11.110", new MyWatcher(zooKeeper,redisUtil,ip,port), AddWatchMode.PERSISTENT);
-            Stat exists = zooKeeper.exists("/LB/192.168.11.110", false);
+//            先监听，在创建“/LB/192.168.10.226”节点时，触发节点创建事件
+            zooKeeper.addWatch("/LB/192.168.10.226", new MyWatcher(zooKeeper,redisUtil,ip,port), AddWatchMode.PERSISTENT);
+            Stat exists = zooKeeper.exists("/LB/192.168.10.226", false);
             if (exists == null) {
                 Stat exists2 = zooKeeper.exists("/LB", false);
                 if (exists2 == null )zooKeeper.create("/LB",null, ZooDefs.Ids.OPEN_ACL_UNSAFE ,CreateMode.PERSISTENT);
-                zooKeeper.create("/LB/192.168.11.110", null, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+                zooKeeper.create("/LB/192.168.10.226", null, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
             }
         } catch (Exception e) {
             log.error("初始化ZooKeeper连接异常....】={}", e);
@@ -157,13 +157,13 @@ class MyWatcher implements Watcher {
                     } catch (Exception e) {
                         log.error("netty节点负载数据加载异常，负载准确度将无法控制");
                     }
-                    Integer load = Integer.valueOf(new String(data));
+                    int load = Integer.valueOf(new String(data)).intValue();
                     redisUtil.hset(this.serverAddr,child,load);
                     System.out.println(this.serverAddr+child+load);
                     loads.addAndGet(load);
                 });
                 //更新SDIloadbalancer的负载
-                redisUtil.hset("MAIN_CTL",this.serverAddr,loads);
+                redisUtil.hset("MAIN_CTL",this.serverAddr,loads.get());
             }
         }
         log.info("--------------------------------------------------------");

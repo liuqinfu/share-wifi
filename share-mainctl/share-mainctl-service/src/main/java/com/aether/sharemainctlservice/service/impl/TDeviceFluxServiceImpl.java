@@ -26,8 +26,18 @@ public class TDeviceFluxServiceImpl implements TDeviceFluxService {
      * @param params 参数
      * @return 实例对象
      */
-    public List<Map> countByParam(Map params){
-        return this.tDeviceFluxDao.countByParam(params);
+    public List<Map> countSTAByParam(Map params){
+        return this.tDeviceFluxDao.countSTAByParam(params);
+    }
+
+    @Override
+    public List<Map> queryDetailByParam(Map params) {
+        return this.tDeviceFluxDao.queryDetailByParam(params);
+    }
+
+    @Override
+    public List<Map> countAPByParam(Map params) {
+        return this.tDeviceFluxDao.countAPByParam(params);
     }
 
     /**

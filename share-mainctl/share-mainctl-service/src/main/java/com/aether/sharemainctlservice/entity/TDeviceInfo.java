@@ -59,9 +59,6 @@ public class TDeviceInfo implements Serializable {
     @ApiModelProperty(value = "SDI信息",notes = "响应时返回")
     private String sdiInfo;
 
-    @ApiModelProperty(value = "热点信息",notes = "响应时返回")
-    private String apInfo;
-
 
     public String getDeviceId() {
         return deviceId;
@@ -119,11 +116,4 @@ public class TDeviceInfo implements Serializable {
         this.sdiInfo = sdiInfo;
     }
 
-    public String getApInfo() {
-        return apInfo;
-    }
-
-    public void setApInfo(String apInfo) {
-        this.apInfo = apInfo;
-    }
 }

@@ -53,9 +53,9 @@ public class SDIApplication implements CommandLineRunner {
             @SneakyThrows
             @Override
             public void run() {
-                Stat exists = zkClient.exists("/LB/192.168.11.110", false);
+                Stat exists = zkClient.exists("/LB/192.168.10.226", false);
                 if (exists != null){
-                    delNode("/LB/192.168.11.110");
+                    delNode("/LB/192.168.10.226");
                 }
                 String serverAddr = ip+":"+port;
                 redisUtil.hdel("MAIN_CTL", serverAddr);

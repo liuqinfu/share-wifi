@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 /**
@@ -36,8 +37,6 @@ public class TDeviceInfoServiceImpl implements TDeviceInfoService {
     @Autowired
     private RedisUtil redisUtil;
 
-    @Autowired
-    private OtherOuterApi otherOuterApi;
 
     /**
      * STA终端信息
@@ -81,7 +80,7 @@ public class TDeviceInfoServiceImpl implements TDeviceInfoService {
     @Override
     public TDeviceInfo regLogin(TDeviceInfo tDeviceInfo, TGpsHis tGpsHis) {
         TDeviceInfo tDeviceInfo1 = tDeviceInfoDao.queryById(tDeviceInfo.getDeviceId());
-        if (tDeviceInfo != null) {
+        if (tDeviceInfo1 != null) {
             //登陆
             // 更新系统版本  UI版本信息
             tDeviceInfo1.setSysV(tDeviceInfo.getSysV());
@@ -97,14 +96,13 @@ public class TDeviceInfoServiceImpl implements TDeviceInfoService {
             tDeviceInfoDao.insert(tDeviceInfo);
         }
         //获取最优热点
-        Map greaterWIFI = otherOuterApi.getGreaterWIFI(getGreatWifiUrl, tGpsHis.getLatitude(), tGpsHis.getLongitude());
-        tDeviceInfo.setApInfo(JSONObject.toJSONString(greaterWIFI));
+//        Map greaterWIFI = otherOuterApi.getGreaterWIFI(getGreatWifiUrl, tGpsHis.getLatitude(), tGpsHis.getLongitude());
+//        tDeviceInfo.setApInfo(JSONObject.toJSONString(greaterWIFI));
         //获取SDI
         Map<Object, Object> sdi_balance_load = redisUtil.hmget("MAIN_CTL");
         List<Map.Entry<String, Integer>> sdi_balances = sortASC(sdi_balance_load);
         Map.Entry<String, Integer> sdi_loads_map = sdi_balances.stream().findFirst().get();
         String sdi_Addr = sdi_loads_map.getKey(); //ip:port
-        Integer sdi_loads = sdi_loads_map.getValue();
         tDeviceInfo.setSdiInfo(sdi_Addr);
         return tDeviceInfo;
 

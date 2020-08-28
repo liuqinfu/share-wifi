@@ -1,5 +1,6 @@
 package com.aehter.sharenettyservice.websocket;
 
+import com.aehter.sharenettyservice.websocket.module.Message;
 import com.aether.sharecommon.utils.RedisUtil;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelId;
@@ -16,6 +17,7 @@ import java.util.concurrent.Executors;
 public class WSConstants {
 	public static final ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors()*2);
     public static final AttributeKey<String> CHANNEL_TOKEN_KEY = AttributeKey.valueOf("netty.channel.token");  
+    public static final AttributeKey<String> CHANNEL_AP_KEY = AttributeKey.valueOf("netty.channel.ap");
 	/**用来保存当前在线人员*/
 	public static Map<String, ChannelId> tokenchannelsId = new ConcurrentHashMap<>();
 	public static Map<ChannelId,String> channelsIdtoken = new ConcurrentHashMap<>();

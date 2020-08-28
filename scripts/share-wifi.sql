@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2020-08-20 15:51:07
+Date: 2020-08-28 17:27:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -44,6 +44,28 @@ CREATE TABLE `t_device_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='终端设备信息';
 
 -- ----------------------------
+-- Table structure for t_flux_meal
+-- ----------------------------
+DROP TABLE IF EXISTS `t_flux_meal`;
+CREATE TABLE `t_flux_meal` (
+  `id` char(32) NOT NULL,
+  `device_id` char(32) NOT NULL COMMENT '设备唯一标识',
+  `order_id` char(32) NOT NULL COMMENT '订单id',
+  `used_flux` double NOT NULL DEFAULT 0 COMMENT '已使用流量 Kb',
+  `left_flux` double NOT NULL COMMENT '剩余流量  Kb',
+  `status` int(1) NOT NULL DEFAULT 1 COMMENT '套餐状态  1：使用中、2：使用完、3：已失效',
+  `start_time` datetime NOT NULL COMMENT '生效时间',
+  `invild_time` datetime NOT NULL COMMENT '失效时间',
+  `create_time` datetime NOT NULL,
+  `update_time` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `foreign_device_order2` (`device_id`),
+  KEY `foreign_order_order2` (`order_id`),
+  CONSTRAINT `foreign_device_order2` FOREIGN KEY (`device_id`) REFERENCES `t_device_info` (`device_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `foreign_order_order2` FOREIGN KEY (`order_id`) REFERENCES `t_order_info` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
 -- Table structure for t_gps_his
 -- ----------------------------
 DROP TABLE IF EXISTS `t_gps_his`;
@@ -57,6 +79,25 @@ CREATE TABLE `t_gps_his` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='终端设备位置表';
 
 -- ----------------------------
+-- Table structure for t_order_info
+-- ----------------------------
+DROP TABLE IF EXISTS `t_order_info`;
+CREATE TABLE `t_order_info` (
+  `id` char(32) NOT NULL,
+  `device_id` char(50) NOT NULL COMMENT '设备id',
+  `meal_id` char(32) NOT NULL COMMENT '套餐id',
+  `pay_price` decimal(10,0) NOT NULL COMMENT '支付价格',
+  `status` int(11) NOT NULL DEFAULT 1 COMMENT '订单状态  1、已创建、待支付；2、已创建、已支付；3、已创建、已取消',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_time` datetime NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `foreign_device_order` (`device_id`),
+  KEY `foreign_meal_order` (`meal_id`),
+  CONSTRAINT `foreign_device_order` FOREIGN KEY (`device_id`) REFERENCES `t_device_info` (`device_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `foreign_meal_order` FOREIGN KEY (`meal_id`) REFERENCES `t_setmeal_info` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
 -- Table structure for t_remotecmd_info
 -- ----------------------------
 DROP TABLE IF EXISTS `t_remotecmd_info`;
@@ -68,6 +109,33 @@ CREATE TABLE `t_remotecmd_info` (
   `remote_cmds` varchar(1000) CHARACTER SET utf8mb4 NOT NULL COMMENT '远程指令需要按执行顺序存储，结构为json',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Table structure for t_setmeal_info
+-- ----------------------------
+DROP TABLE IF EXISTS `t_setmeal_info`;
+CREATE TABLE `t_setmeal_info` (
+  `id` char(32) NOT NULL,
+  `name` varchar(100) NOT NULL COMMENT '套餐名称',
+  `flux` decimal(10,0) NOT NULL COMMENT '套餐容量；Kb',
+  `price` decimal(10,0) NOT NULL COMMENT '套餐价格、分',
+  `indate` bigint(20) NOT NULL COMMENT '有效期，天',
+  `description` varchar(500) DEFAULT NULL COMMENT '套餐描述',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Table structure for t_share_limit
+-- ----------------------------
+DROP TABLE IF EXISTS `t_share_limit`;
+CREATE TABLE `t_share_limit` (
+  `device_id` char(32) NOT NULL COMMENT '设备唯一标识',
+  `limits` double DEFAULT NULL,
+  `create_time` datetime NOT NULL DEFAULT current_timestamp(),
+  `update_time` datetime DEFAULT current_timestamp(),
+  PRIMARY KEY (`device_id`),
+  CONSTRAINT `t_device_limit` FOREIGN KEY (`device_id`) REFERENCES `t_device_info` (`device_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for t_wifi_event
@@ -88,7 +156,6 @@ CREATE TABLE `t_wifi_event` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_wifi_info`;
 CREATE TABLE `t_wifi_info` (
-  `id` char(32) NOT NULL,
   `device_id` varchar(100) NOT NULL COMMENT '设备行记录id',
   `bssid` varchar(50) NOT NULL COMMENT '热点唯一标识',
   `ssid` varchar(50) NOT NULL COMMENT '热点名称',
@@ -96,71 +163,7 @@ CREATE TABLE `t_wifi_info` (
   `pwd` varchar(100) DEFAULT NULL COMMENT '热点密码',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp() COMMENT '更新时间',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `device_rowId` (`device_rowId`),
-  CONSTRAINT `foreign_device_wifi` FOREIGN KEY (`device_rowId`) REFERENCES `t_device_info` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- 设备操作记录表
-CREATE TABLE `t_device_operation_record` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '逻辑主键【自增列】',
-  `device_id` varchar(100) NOT NULL COMMENT '设备唯一标识【引用t_device_info表的device_id字段值】',
-  `operation_type` varchar(30) NOT NULL COMMENT '操作类型【WLAN：Wifi；bluetooth：蓝牙；hotspot：热点；GPS：GPS；APP：APP】',
-  `action` tinyint(2) NOT NULL COMMENT '动作【0：关闭；1：打开；2：连接；4：退出】',
-  `operation_time` datetime NOT NULL COMMENT '操作时间',
-  `operation_data` varchar(1200) DEFAULT NULL COMMENT '操作数据',
-  `longitude` decimal(20,2) DEFAULT NULL COMMENT 'GPS经度',
-  `latitude` decimal(20,2) DEFAULT NULL COMMENT 'GPS纬度',
-  `gps_address` varchar(150) DEFAULT NULL COMMENT 'GPS地址【如：xxx省xxx市xxx】',
-  `remarks` varchar(1500) DEFAULT NULL COMMENT '备注说明',
-  `created_time` datetime NOT NULL COMMENT '创建时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='设备操作记录表';
-
--- 套餐表
-CREATE TABLE `t_setmeal_info` (
-  `id` char(32) NOT NULL,
-  `name` varchar(100) NOT NULL COMMENT '套餐名称',
-  `flux` decimal(10,0) NOT NULL COMMENT '套餐容量；Kb',
-  `price` decimal(10,0) NOT NULL COMMENT '套餐价格、分',
-  `indate` datetime NOT NULL COMMENT '有效期，天',
-  `description` varchar(500) DEFAULT NULL COMMENT '套餐描述',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- 套餐订单表
-CREATE TABLE `t_order_info` (
-  `id` char(32) NOT NULL,
-  `device_id` char(50) NOT NULL COMMENT '设备id',
-  `meal_id` char(32) NOT NULL COMMENT '套餐id',
-  `pay_price` decimal(10,0) NOT NULL COMMENT '支付价格',
-  `status` int(11) NOT NULL DEFAULT 1 COMMENT '订单状态  1、已创建、待支付；2、已创建、已支付；3、已创建、已取消',
-  `create_time` datetime NOT NULL COMMENT '创建时间',
-  `update_time` datetime NOT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`),
-  KEY `foreign_device_order` (`device_id`),
-  KEY `foreign_meal_order` (`meal_id`),
-  CONSTRAINT `foreign_device_order` FOREIGN KEY (`device_id`) REFERENCES `t_device_info` (`device_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `foreign_meal_order` FOREIGN KEY (`meal_id`) REFERENCES `t_setmeal_info` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- 订单套餐流量使用概况表
-CREATE TABLE `t_flux_meal` (
-  `id` char(32) NOT NULL,
-  `device_id` char(32) NOT NULL COMMENT '设备唯一标识',
-  `order_id` char(32) NOT NULL COMMENT '订单id',
-  `used_flux` double NOT NULL DEFAULT 0 COMMENT '已使用流量 Kb',
-  `left_flux` double NOT NULL COMMENT '剩余流量  Kb',
-  `status` int(1) NOT NULL DEFAULT 1 COMMENT '套餐状态  1：使用中、2：使用完、3：已失效',
-  `invild_time` datetime NOT NULL COMMENT '失效时间',
-  `create_time` datetime NOT NULL,
-  `update_time` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `foreign_device_order2` (`device_id`),
-  KEY `foreign_order_order2` (`order_id`),
-  CONSTRAINT `foreign_device_order2` FOREIGN KEY (`device_id`) REFERENCES `t_device_info` (`device_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `foreign_order_order2` FOREIGN KEY (`order_id`) REFERENCES `t_order_info` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
-SET FOREIGN_KEY_CHECKS = 1;
+  PRIMARY KEY (`device_id`),
+  KEY `device_rowId` (`device_id`),
+  CONSTRAINT `foreign_device_wifi` FOREIGN KEY (`device_id`) REFERENCES `t_device_info` (`device_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='热点信息';

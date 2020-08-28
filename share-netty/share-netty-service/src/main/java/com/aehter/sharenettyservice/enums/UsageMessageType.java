@@ -25,7 +25,13 @@ public enum UsageMessageType {
     /**
      * 流量上报
      */
-    REPORT_FLUX("flux");
+    REPORT_FLUX("flux"),
+
+
+    /**
+     * 心跳
+     */
+    HEART_BREAK("heartbreak");
 
     private String usageType;
 
